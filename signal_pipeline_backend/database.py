@@ -37,9 +37,7 @@ CREATE TABLE IF NOT EXISTS scout_runs (
     timestamp     TEXT NOT NULL,
     queries_used  INTEGER NOT NULL DEFAULT 0,
     results_found INTEGER NOT NULL DEFAULT 0,
-    output_file   TEXT NOT NULL,
-    profile_file  TEXT,
-    profile_json  TEXT
+    output_file   TEXT NOT NULL
 );
 """
 
@@ -88,14 +86,6 @@ def init_db() -> None:
     with _connect() as conn:
         conn.execute(DDL_SCOUT_RUNS)
         conn.execute(DDL_SIGNALS)
-        columns = {
-            row["name"]
-            for row in conn.execute("PRAGMA table_info(scout_runs)").fetchall()
-        }
-        if "profile_file" not in columns:
-            conn.execute("ALTER TABLE scout_runs ADD COLUMN profile_file TEXT")
-        if "profile_json" not in columns:
-            conn.execute("ALTER TABLE scout_runs ADD COLUMN profile_json TEXT")
         signal_columns = {
             row["name"]
             for row in conn.execute("PRAGMA table_info(signals)").fetchall()
@@ -146,8 +136,6 @@ def get_existing_fingerprints() -> set[str]:
 
 def write_scout_run(
     scout_json_path: str | Path,
-    profile_file: str | None = None,
-    profile_json: str | None = None,
 ) -> int:
     """
     Parse a signal_report_*.json file and insert:
@@ -170,11 +158,11 @@ def write_scout_run(
         cur = conn.execute(
             """
             INSERT INTO scout_runs (
-                timestamp, queries_used, results_found, output_file, profile_file, profile_json
+                timestamp, queries_used, results_found, output_file
             )
-            VALUES (?, ?, ?, ?, ?, ?)
+            VALUES (?, ?, ?, ?)
             """,
-            (timestamp, queries_used, results_found, path.name, profile_file, profile_json),
+            (timestamp, queries_used, results_found, path.name),
         )
         run_id = cur.lastrowid
 
@@ -243,7 +231,8 @@ def write_scored_run(scored_json_path: str | Path) -> None:
     Parse a scored_report_*.json and update signal rows with score fields.
 
     Matching strategy: join on run_id (via source_report filename) +
-    institution + signal_type. If no matching row exists, insert a new one.
+    institution + signal_type (+ date/url). Unmatched scored rows are skipped
+    to avoid persisting fabricated data.
     """
     path = Path(scored_json_path)
     with open(path) as f:
@@ -261,18 +250,16 @@ def write_scored_run(scored_json_path: str | Path) -> None:
             (source_report,),
         ).fetchone()
 
-        if row:
-            run_id = row["id"]
-        else:
-            # No matching scout run — create a placeholder entry
-            cur = conn.execute(
-                """
-                INSERT INTO scout_runs (timestamp, queries_used, results_found, output_file)
-                VALUES (?, 0, ?, ?)
-                """,
-                (scored_at, len(signals), source_report),
+        if not row:
+            # Fail closed: scoring should always map to an existing scout run.
+            print(
+                f"WARNING: No scout run found for source_report='{source_report}'. "
+                "Skipping scored write."
             )
-            run_id = cur.lastrowid
+            return
+
+        run_id = row["id"]
+        skipped_unmatched = 0
 
         for sig in signals:
             institution  = sig.get("institution")
@@ -319,39 +306,13 @@ def write_scored_run(scored_json_path: str | Path) -> None:
                     ),
                 )
             else:
-                conn.execute(
-                    """
-                    INSERT INTO signals (
-                        run_id, institution, country, region, signal_type, signal_date,
-                        domain, institution_tier, seniority, source_url, summary,
-                        total_score, priority_tier, action_pts, seniority_pts,
-                        domain_pts, accessibility_pts, recency_pts,
-                        seniority_inferred, scored_at
-                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-                    """,
-                    (
-                        run_id,
-                        institution,
-                        sig.get("country") or "Unspecified",
-                        sig.get("region") or "Unspecified",
-                        signal_type,
-                        sig.get("signal_date"),
-                        sig.get("domain"),
-                        sig.get("institution_tier") or sig.get("institution_type"),
-                        sig.get("seniority"),
-                        sig.get("source_url"),
-                        sig.get("summary"),
-                        score_fields["total_score"],
-                        score_fields["priority_tier"],
-                        score_fields["action_pts"],
-                        score_fields["seniority_pts"],
-                        score_fields["domain_pts"],
-                        score_fields["accessibility_pts"],
-                        score_fields["recency_pts"],
-                        score_fields["seniority_inferred"],
-                        scored_at,
-                    ),
-                )
+                skipped_unmatched += 1
+
+        if skipped_unmatched:
+            print(
+                f"WARNING: Skipped {skipped_unmatched} unmatched scored signal(s) "
+                f"for run_id={run_id}."
+            )
 
         conn.commit()
 
@@ -360,33 +321,17 @@ def write_scored_run(scored_json_path: str | Path) -> None:
 # Queries
 # ---------------------------------------------------------------------------
 
-def get_runs_by_profile_files(profile_files: list[str]) -> list[dict]:
-    """Return scout runs linked to any of the provided profile paths."""
+def get_all_signals() -> list[dict]:
+    """Return all signals across all runs, newest runs first."""
     init_db()
-    unique_files = [p for p in dict.fromkeys(profile_files) if p]
-    if not unique_files:
-        return []
-
     with _connect() as conn:
-        conn.execute(
-            """
-            CREATE TEMP TABLE IF NOT EXISTS tmp_profile_files (
-                profile_file TEXT PRIMARY KEY
-            )
-            """
-        )
-        conn.execute("DELETE FROM tmp_profile_files")
-        conn.executemany(
-            "INSERT OR IGNORE INTO tmp_profile_files (profile_file) VALUES (?)",
-            [(path,) for path in unique_files],
-        )
         rows = conn.execute(
             """
-            SELECT sr.id, sr.output_file, sr.profile_file
-            FROM scout_runs sr
-            JOIN tmp_profile_files tpf ON tpf.profile_file = sr.profile_file
-            ORDER BY id DESC
-            """,
+            SELECT s.*, sr.timestamp AS run_timestamp
+            FROM signals s
+            JOIN scout_runs sr ON s.run_id = sr.id
+            ORDER BY s.run_id DESC, s.total_score DESC, s.signal_date DESC
+            """
         ).fetchall()
     return [dict(row) for row in rows]
 
@@ -397,7 +342,7 @@ def get_all_runs() -> list[dict]:
     with _connect() as conn:
         rows = conn.execute(
             """
-            SELECT id, output_file, profile_file
+            SELECT id, output_file
             FROM scout_runs
             ORDER BY id DESC
             """
@@ -449,12 +394,11 @@ def get_batches() -> list[dict]:
                 sr.id,
                 sr.timestamp,
                 sr.output_file,
-                sr.profile_file,
                 COUNT(s.id) AS signal_count,
                 COALESCE(MAX(NULLIF(s.institution, '')), '') AS company_name
             FROM scout_runs sr
             LEFT JOIN signals s ON s.run_id = sr.id
-            GROUP BY sr.id, sr.timestamp, sr.output_file, sr.profile_file
+            GROUP BY sr.id, sr.timestamp, sr.output_file
             ORDER BY sr.id DESC
             """
         ).fetchall()
@@ -466,7 +410,7 @@ def delete_batch(run_id: int) -> dict | None:
     init_db()
     with _connect() as conn:
         row = conn.execute(
-            "SELECT id, output_file, profile_file, timestamp FROM scout_runs WHERE id = ?",
+            "SELECT id, output_file, timestamp FROM scout_runs WHERE id = ?",
             (run_id,),
         ).fetchone()
         if not row:
@@ -527,47 +471,4 @@ def get_summary() -> dict:
             "timestamp": run["timestamp"],
             **counts,
             "total": len(rows),
-        }
-
-
-def update_run_profile(run_id: int, profile_file: str | None, profile_json: str | None) -> None:
-    """Attach briefing profile metadata to an existing scout run."""
-    init_db()
-    with _connect() as conn:
-        conn.execute(
-            """
-            UPDATE scout_runs
-            SET profile_file = ?, profile_json = ?
-            WHERE id = ?
-            """,
-            (profile_file, profile_json, run_id),
-        )
-        conn.commit()
-
-
-def get_latest_run_profile() -> dict:
-    """Return profile metadata from the most recent scout run."""
-    init_db()
-    with _connect() as conn:
-        row = conn.execute(
-            """
-            SELECT id, timestamp, profile_file, profile_json
-            FROM scout_runs
-            ORDER BY id DESC
-            LIMIT 1
-            """
-        ).fetchone()
-        if not row:
-            return {
-                "run_id": None,
-                "timestamp": None,
-                "profile_file": None,
-                "profile_json": None,
-            }
-
-        return {
-            "run_id": row["id"],
-            "timestamp": row["timestamp"],
-            "profile_file": row["profile_file"],
-            "profile_json": row["profile_json"],
         }

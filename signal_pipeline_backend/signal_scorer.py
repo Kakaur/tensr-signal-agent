@@ -8,8 +8,6 @@ import yaml
 from crewai import LLM, Agent, Crew, Task
 from dotenv import load_dotenv
 
-from signal_pipeline_backend.pipeline_profile import load_profile, validate_profile_dict
-
 load_dotenv()
 
 # ---------------------------------------------------------------------------
@@ -98,26 +96,6 @@ INSTITUTION_SCORES = {
     "mid-tier bank": 8,
     "unknown": 5,
 }
-
-COMPONENT_MAX = {
-    "action_type": 30,
-    "seniority": 20,
-    "domain_fit": 25,
-    "institution_accessibility": 15,
-    "recency": 10,
-}
-
-CATEGORY_COMPONENT_ALIASES = {
-    "action_strength": "action_type",
-    "action_type": "action_type",
-    "buyer_fit": "institution_accessibility",
-    "institution_accessibility": "institution_accessibility",
-    "institution_fit": "institution_accessibility",
-    "domain_fit": "domain_fit",
-    "seniority": "seniority",
-    "recency": "recency",
-}
-
 
 def parse_signal_date(date_str: str) -> datetime | None:
     """Parse signal_date in YYYY-MM-DD or YYYY-MM format."""
@@ -211,66 +189,7 @@ def apply_seniority_override(signal: dict, breakdown: dict) -> dict:
     return breakdown
 
 
-def _profile_weighted_total(
-    breakdown: dict, ranking_cfg: dict, institution: str
-) -> tuple[int, dict]:
-    """Compute weighted score from profile ranking categories."""
-    categories = ranking_cfg.get("categories", [])
-    weighted_breakdown: dict = {}
-    weighted_total = 0.0
-
-    for cat in categories:
-        key = str(cat.get("key", "")).strip().lower()
-        label = cat.get("label", key or "category")
-        weight = int(cat.get("weight", 0))
-        component = CATEGORY_COMPONENT_ALIASES.get(key)
-
-        raw_points = 0
-        max_points = 100
-        if component and isinstance(breakdown.get(component), dict):
-            raw_points = float(breakdown[component].get("points", 0))
-            max_points = float(COMPONENT_MAX.get(component, 100))
-        elif isinstance(breakdown.get(key), dict):
-            raw_points = float(breakdown[key].get("points", 0))
-            max_points = float(COMPONENT_MAX.get(key, 100))
-        else:
-            # Unknown custom category key: neutral score fallback.
-            raw_points = 50
-            max_points = 100
-
-        normalized = 0.0 if max_points <= 0 else max(0.0, min(1.0, raw_points / max_points))
-        contribution = normalized * weight
-        weighted_total += contribution
-
-        weighted_breakdown[key or label] = {
-            "label": label,
-            "weight": weight,
-            "source_component": component or key,
-            "raw_points": raw_points,
-            "max_points": max_points,
-            "normalized": round(normalized, 4),
-            "weighted_points": round(contribution, 2),
-        }
-
-    total_rounded = int(round(weighted_total))
-    print(f"  PROFILE SCORE: {institution} | weighted_total={total_rounded}")
-    return total_rounded, weighted_breakdown
-
-
-def _tier_from_thresholds(total: int, thresholds: dict) -> str:
-    hot = int(thresholds.get("HOT", 80))
-    warm = int(thresholds.get("WARM", 60))
-    nurture = int(thresholds.get("NURTURE", 40))
-    if total >= hot:
-        return "HOT"
-    if total >= warm:
-        return "WARM"
-    if total >= nurture:
-        return "NURTURE"
-    return "HOLD"
-
-
-def rescore_signal(signal: dict, profile_config: dict | None = None) -> dict:
+def rescore_signal(signal: dict) -> dict:
     """Apply programmatic scoring overrides to a single scored signal."""
     institution = signal.get("institution", signal.get("institution_name", "?"))
     breakdown = signal.get("score_breakdown", {})
@@ -305,25 +224,12 @@ def rescore_signal(signal: dict, profile_config: dict | None = None) -> dict:
     date_str = signal.get("signal_date", "")
     breakdown["recency"] = score_recency(date_str, institution)
 
-    # Recompute total and tier using profile if available
-    ranking_cfg = (profile_config or {}).get("ranking") if profile_config else None
-    if ranking_cfg and ranking_cfg.get("categories"):
-        total, weighted_breakdown = _profile_weighted_total(
-            breakdown=breakdown, ranking_cfg=ranking_cfg, institution=institution
-        )
-        thresholds = ranking_cfg.get(
-            "priority_thresholds", {"HOT": 80, "WARM": 60, "NURTURE": 40}
-        )
-        tier = _tier_from_thresholds(total, thresholds)
-        signal["profile_weighted_breakdown"] = weighted_breakdown
-        signal["profile_thresholds"] = thresholds
-    else:
-        total = int(sum(
-            cat.get("points", 0)
-            for cat in breakdown.values()
-            if isinstance(cat, dict) and "points" in cat
-        ))
-        tier = "HOT" if total >= 80 else "WARM" if total >= 60 else "NURTURE" if total >= 40 else "HOLD"
+    total = int(sum(
+        cat.get("points", 0)
+        for cat in breakdown.values()
+        if isinstance(cat, dict) and "points" in cat
+    ))
+    tier = "HOT" if total >= 80 else "WARM" if total >= 60 else "NURTURE" if total >= 40 else "HOLD"
 
     signal["score_breakdown"] = breakdown
     signal["total_score"] = total
@@ -352,9 +258,7 @@ def build_scorer_agent() -> Agent:
 # Task factory — built from config/tasks.yaml
 # ---------------------------------------------------------------------------
 
-def build_scorer_task(
-    agent: Agent, signals_input: list[dict] | None, profile_context: str = ""
-) -> Task:
+def build_scorer_task(agent: Agent, signals_input: list[dict] | None) -> Task:
     """Build the scoring task with scout signals injected.
 
     Args:
@@ -371,11 +275,6 @@ def build_scorer_task(
                 "signals_json": signals_json,
             }
         )
-        if profile_context:
-            description += (
-                "\n\nACTIVE PIPELINE PROFILE (prioritize this ranking intent):\n"
-                f"{profile_context}\n"
-            )
     else:
         description = (
             "WARNING: Could not parse structured signals. Raw data is "
@@ -394,12 +293,6 @@ def build_scorer_task(
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
     args = sys.argv[1:]
-    profile_path = None
-    if "--profile" in args:
-        idx = args.index("--profile")
-        if idx + 1 < len(args):
-            profile_path = args[idx + 1]
-            del args[idx:idx + 2]
 
     # 1. Load scout report (from CLI arg or find latest)
     if args:
@@ -437,10 +330,17 @@ if __name__ == "__main__":
             "Scout report has neither 'signals' nor 'raw_output' field"
         )
 
-    print(
-        f"Loaded {len(signals_input) if signals_input else '?'} signals "
-        f"from scout report"
-    )
+    loaded_count = len(signals_input) if isinstance(signals_input, list) else "?"
+    print(f"Loaded {loaded_count} signals from scout report")
+
+    # Fail closed: never ask the scorer LLM to invent signals when scout
+    # produced none or parsing failed.
+    if not isinstance(signals_input, list):
+        print(
+            "WARNING: Scout signals are not a structured list. "
+            "Skipping scoring to avoid fabricated output."
+        )
+        signals_input = []
 
     # 2. Score signals in batches to stay within LLM output token limits.
     #    Each signal scores to ~1,400 chars of JSON; Gemini Flash caps at
@@ -456,28 +356,9 @@ if __name__ == "__main__":
             for i in range(0, len(signals_input), BATCH_SIZE)
         ]
     else:
-        batches = [None]  # single pass with raw-text fallback
+        batches = []
 
-    profile_context = ""
-    profile_config = None
-    if profile_path:
-        try:
-            profile = load_profile(profile_path)
-            profile_context = json.dumps(profile.model_dump(), indent=2)
-            profile_config = profile.model_dump()
-            print(f"Loaded profile: {profile_path}")
-        except Exception as exc:
-            print(f"WARNING: failed to load profile '{profile_path}': {exc}")
-    elif isinstance(report_data.get("profile"), dict):
-        try:
-            validated_profile = validate_profile_dict(report_data["profile"])
-            profile_config = validated_profile.model_dump()
-            profile_context = json.dumps(profile_config, indent=2)
-            print("Loaded profile from scout report payload.")
-        except Exception as exc:
-            print(f"WARNING: failed to load profile from scout report: {exc}")
-
-    scorer_agent = build_scorer_agent()
+    scorer_agent = build_scorer_agent() if batches else None
 
     for batch_idx, batch in enumerate(batches, start=1):
         print(f"\n{'=' * 60}")
@@ -488,7 +369,7 @@ if __name__ == "__main__":
         )
         print("=" * 60)
 
-        task = build_scorer_task(scorer_agent, batch, profile_context=profile_context)
+        task = build_scorer_task(scorer_agent, batch)
         crew = Crew(agents=[scorer_agent], tasks=[task], verbose=True)
         result = crew.kickoff()
 
@@ -528,7 +409,7 @@ if __name__ == "__main__":
     print("\n" + "=" * 60)
     print("PHASE: Programmatic scoring overrides")
     print("=" * 60)
-    signals = [rescore_signal(sig, profile_config=profile_config) for sig in signals]
+    signals = [rescore_signal(sig) for sig in signals]
 
     # Re-sort by score descending
     signals.sort(key=lambda s: s.get("total_score", 0), reverse=True)
