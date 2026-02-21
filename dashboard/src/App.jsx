@@ -16,8 +16,18 @@ export default function App() {
   const [selectedSignal, setSelectedSignal] = useState(null)
   const [briefingOpen, setBriefingOpen]   = useState(false)
   const [settingsOpen, setSettingsOpen]   = useState(false)
-  const [activeProfilePath, setActiveProfilePath] = useState('')
-  const [activeProfile, setActiveProfile] = useState(null)
+  const [activeProfilePath, setActiveProfilePath] = useState(
+    () => localStorage.getItem('tensr_active_profile_path') || ''
+  )
+  const [activeProfile, setActiveProfile] = useState(() => {
+    const savedProfile = localStorage.getItem('tensr_active_profile_json') || ''
+    if (!savedProfile) return null
+    try {
+      return JSON.parse(savedProfile)
+    } catch {
+      return null
+    }
+  })
   const [selectedProfilePaths, setSelectedProfilePaths] = useState([])
   const [runAllProfiles, setRunAllProfiles] = useState(false)
 
@@ -28,19 +38,6 @@ export default function App() {
     .filter(s => !filters.region       || s.region       === filters.region)
     .filter(s => !filters.domains?.length || filters.domains.includes(s.domain))
     .filter(s => !filters.priority_tier || s.priority_tier === filters.priority_tier)
-
-  useEffect(() => {
-    const savedPath = localStorage.getItem('tensr_active_profile_path') || ''
-    const savedProfile = localStorage.getItem('tensr_active_profile_json') || ''
-    if (savedPath) setActiveProfilePath(savedPath)
-    if (savedProfile) {
-      try {
-        setActiveProfile(JSON.parse(savedProfile))
-      } catch {
-        setActiveProfile(null)
-      }
-    }
-  }, [])
 
   useEffect(() => {
     if (activeProfilePath) localStorage.setItem('tensr_active_profile_path', activeProfilePath)

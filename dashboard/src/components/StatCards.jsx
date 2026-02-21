@@ -1,7 +1,7 @@
 import { BarChart2, Flame, Globe, Layers } from 'lucide-react'
 import { formatDomain } from '../utils/formatters.js'
 
-function StatCard({ icon: Icon, label, value, sub, accent }) {
+function StatCard({ icon, label, value, sub, accent }) {
   const accentMap = {
     indigo: 'bg-indigo-500/10 border-indigo-500/20 text-indigo-400',
     red:    'bg-red-500/10    border-red-500/20    text-red-400',
@@ -14,10 +14,11 @@ function StatCard({ icon: Icon, label, value, sub, accent }) {
     amber:  'text-amber-400',
     violet: 'text-violet-400',
   }
+  const IconComponent = icon
   return (
     <div className={`flex items-center gap-4 px-5 py-4 rounded-xl border bg-slate-900/75 shadow-sm ${accentMap[accent]}`}>
       <div className={`p-2 rounded-lg bg-slate-800 ${iconMap[accent]}`}>
-        <Icon size={18} />
+        <IconComponent size={18} />
       </div>
       <div className="min-w-0">
         <p className="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mb-0.5">{label}</p>

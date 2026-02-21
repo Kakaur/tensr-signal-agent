@@ -1,0 +1,8 @@
+crewai==1.9.3
+fastapi==0.129.2
+pydantic==2.11.10
+python-dotenv==1.1.1
+PyYAML==6.0.3
+tavily-python==0.7.21
+uvicorn==0.41.0
+
