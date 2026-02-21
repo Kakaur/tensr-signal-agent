@@ -1,0 +1,258 @@
+# config/tasks.yaml
+# Declarative task templates for all CrewAI tasks.
+#
+# Fields that contain {placeholders} are interpolated at runtime by the
+# calling script using Python's str.format_map(). The static preamble and
+# instructions live here; only the dynamic data blocks are injected.
+
+scout_task:
+  # {n_results}    — integer count of search results passed in
+  # {search_results_json} — JSON string of pre-fetched Tavily results
+  description: |
+    You have been provided with {n_results} search results from web
+    searches about companies in Eastern Europe and the Middle East
+    undertaking digital transformation, AI adoption, industrial
+    modernisation, and sovereign infrastructure projects.
+
+    SEARCH RESULTS:
+    {search_results_json}
+
+    YOUR TASK: Analyse ALL results thoroughly and extract EVERY qualifying
+    buying signal. Target 20-25 high-quality signals.
+    Do not stop early — scan every result before concluding.
+
+    PRIORITY MARKETS:
+    1. EASTERN EUROPE (EE) — Poland, Romania, Czech Republic, Hungary,
+       Slovakia, Bulgaria, Baltic states.
+       Focus areas: industrial automation, nearshore logistics, EU AI Act
+       compliance, Industrial 5.0, Digital Product Passports (DPP).
+    2. MIDDLE EAST (ME) — Saudi Arabia, UAE, Qatar, Kuwait, Bahrain,
+       Oman, Jordan.
+       Focus areas: non-oil GDP diversification, Giga-projects, National
+       AI Strategy alignment, In-Country Value (ICV) programmes, Smart
+       City orchestration, Sovereign Cloud.
+
+    At least 70% of signals must be from EE or ME.
+
+    SIGNAL DOMAINS — look for companies investing in:
+    1. AI-driven transformation / enterprise AI adoption
+    1b. AI implementation programs (deployment, workflow integration)
+    1c. Agentic automation (AI agents automating business operations)
+    2. Industrial automation / Industry 4.0 / Industrial 5.0
+    3. Digital Product Passports (DPP) or supply chain digitisation
+    4. Sovereign Cloud or national data infrastructure
+    5. Tokenized Real World Assets (RWA) or digital asset infrastructure
+       (NOTE: this means tokenised bonds, real estate, industrial IP —
+       NOT cryptocurrency trading or speculation)
+    6. Smart City orchestration or national AI strategy programmes
+
+    REGIONAL SIGNAL KEYWORDS — treat these as strong qualifying signals:
+    MIDDLE EAST:
+    - "National AI Strategy alignment"
+    - "In-country Value (ICV)" or "ICV compliance"
+    - "Non-oil GDP growth"
+    - "Smart City orchestration"
+    - "Sovereign Cloud"
+    EASTERN EUROPE:
+    - "Labor cost arbitrage offset via AI"
+    - "EU AI Act compliance"
+    - "Industrial 5.0"
+    - "Digital Product Passports (DPP)"
+
+    TARGET INSTITUTION PROFILE:
+    - Regional champions ($500M–$10B market cap)
+    - Family-owned conglomerates (especially in ME)
+    - Specialised industry leaders in manufacturing, logistics, energy,
+      construction, real estate, and financial services
+    - Series A+ fintechs and neobanks in EE/ME
+
+    INSTITUTION TIER CLASSIFICATION:
+    - "tier1"      — Tier-1 global bank (G-SIB), Big Tech (MAGMA), or
+                     Top-10 global consultancy — EXCLUDE THESE
+    - "mid_tier"   — established regional or national institution,
+                     $10B–$500B revenue/assets
+    - "community"  — smaller regional player or credit union, <$10B
+    - "fintech"    — Series A+ fintech or neobank
+    - "industrial" — manufacturer, logistics, energy, construction, or
+                     real estate company adopting digital/AI solutions
+
+    EXCLUSION LIST — Do NOT include any of the following:
+    - Tier-1 global banks (Goldman Sachs, JP Morgan, HSBC, Barclays,
+      BNP Paribas, Deutsche Bank, Citigroup, etc.)
+    - Big Tech / MAGMA (Microsoft, Apple, Google, Meta, Amazon/AWS)
+    - Top-10 global consultancies (McKinsey, BCG, Bain, Deloitte, PwC,
+      KPMG, EY, Accenture, etc.)
+    - Large global enterprises/mega-cap vendors outside target ICP
+      (e.g., Adobe, Lenovo, Oracle, SAP, IBM, Cisco, Salesforce,
+      ServiceNow, Nvidia, Intel, AMD, Dell, HP/HPE)
+    - Companies whose PRIMARY business is Cryptocurrency, NFTs, or Web3
+      (crypto exchanges, DeFi protocols, NFT marketplaces, token
+      launchpads, Bitcoin miners — these are NOT the same as companies
+      doing tokenized RWA or sovereign digital assets)
+    - AI-native companies whose PRIMARY business is building/selling AI
+      models, AI platforms, or AI software products (LLM providers,
+      model labs, AI tooling vendors)
+    - Regulators, government agencies, or ministries acting as regulators
+    - PR firms, marketing agencies, or pure advisory firms
+    - Unnamed, anonymous, or vaguely described groups
+    - Generic group labels instead of specific company names
+      (e.g., "enterprises", "businesses", "retailers", "manufacturers",
+      "financial institutions", "customers", "clients")
+    - Companies that SELL/VENDOR technology rather than ADOPT it
+    - Survey results, industry reports, market research, or aggregate
+      trend pieces not tied to a specific institution's own actions
+    - Any signal older than 90 days from today's date
+    - Generic executive hires with no specific AI, digital, or industrial
+      transformation angle
+    - Industry awards, rankings, or 'best of' lists
+
+    VALID SIGNAL TYPES: Only actions taken by the institution itself —
+    hired someone, launched a product/pilot, announced a partnership,
+    filed a regulatory application, received a government contract, spoke
+    at a conference about their own transformation.
+
+    BUYER vs SELLER: Only include institutions that are BUYING or ADOPTING
+    solutions. Do NOT include companies that BUILD or SELL technology.
+    This includes AI-native vendors (model builders, LLM labs, AI platform providers).
+    Also exclude very large global enterprises that are outside the
+    regional mid-market/family conglomerate target profile.
+
+    INSTITUTION FIELD RULE (STRICT):
+    - "institution" MUST be one specific company name (exact legal or
+      commonly used company name).
+    - Never use generic labels like enterprises, businesses, companies,
+      institutions, retailers, manufacturers, customers, clients, sector,
+      or industry.
+    - If a source mentions only a broad group with no named company,
+      skip that signal.
+
+    CRITICAL: Every signal MUST use a URL from the SEARCH RESULTS above.
+    Copy the exact URL — do not modify it. If you cannot match a signal
+    to a URL from the results, do not include that signal.
+
+    UNIQUENESS REQUIREMENT:
+    - Prioritise institutions/signals not already seen in prior scout runs.
+    - Avoid repeating the same institution + signal_type + signal_date
+      combination unless there is clearly a new event.
+
+    AI MIX REQUIREMENT:
+    - At least 50% of returned signals must have one of these domains:
+      ai_transformation, ai_implementation, agentic_automation, ai_compliance_risk.
+    - Prioritize institutions actively rolling out enterprise AI or
+      agentic automation in operations, risk, compliance, service, or
+      internal process modernization.
+
+    OUTPUT FORMAT: Respond with ONLY valid JSON — no markdown, no code
+    fences, no commentary. Use this exact structure:
+    [
+      {{
+        "institution": "...",
+        "region": "Eastern Europe | Middle East | Europe | US | Other",
+        "country": "...",
+        "signal_type": "hire | partnership | launch | filing | conference | pilot | contract | other",
+        "signal_date": "YYYY-MM or YYYY-MM-DD",
+        "summary": "...",
+        "source_url": "exact URL from search results",
+        "seniority": "C-suite | VP/Director | Senior/Manager | Unknown",
+        "domain": "ai_transformation | ai_implementation | agentic_automation | industrial_automation | digital_product_passport | sovereign_cloud | tokenized_rwa | smart_city | ai_compliance_risk | other",
+        "institution_tier": "tier1 | mid_tier | community | fintech | industrial",
+        "regional_keyword_match": "list any matching regional signal keywords, or empty string"
+      }}
+    ]
+
+    TARGET SIZE: Return 20-25 signals. If a result contains multiple
+    institutions with qualifying actions, create a separate signal entry
+    for each. Do NOT invent or fabricate any URL.
+  expected_output: >
+    A valid JSON array of AT LEAST 20 signals (target 25+) where EVERY
+    signal has a real, verified URL from the provided search results.
+    Each object must include: institution, region, country, signal_type,
+    signal_date, summary, source_url (must be from search results),
+    seniority, domain, institution_tier, regional_keyword_match.
+    At least 70% must be from Eastern Europe or Middle East. No Tier-1
+    banks, Big Tech, top consultancies, or primary crypto/NFT/Web3
+    companies. If the search results are genuinely exhausted before
+    reaching 20, return all found signals and add a 'search_note' field.
+
+scorer_task:
+  # {n_signals}     — integer count of signals in this batch
+  # {signals_json}  — JSON string of the signals to score
+  description: |
+    You are given {n_signals} structured signals from the Signal Scout
+    agent. Each signal already has these fields:
+      institution, region, signal_type, signal_date, summary,
+      source_url, seniority, domain
+
+    SIGNALS:
+    {signals_json}
+
+    Your job is to:
+
+    1. Score EACH signal using the rubric in your backstory.
+       - Use the signal's existing 'signal_type' for action_type scoring.
+       - Use the signal's existing 'seniority' field directly for
+         seniority scoring.
+       - Use the signal's existing 'domain' field directly for
+         domain_fit scoring.
+       - Infer institution_type (Series A+ fintech, regional/community
+         bank, mid-tier bank, or unknown) from the summary and institution
+         name for institution_accessibility scoring.
+       - Use 'signal_date' vs today's date for recency scoring.
+       Show the breakdown for each category.
+    2. Assign a priority tier: HOT (80-100), WARM (60-79),
+       NURTURE (40-59), HOLD (<40).
+    3. Sort all signals by score descending.
+
+    OUTPUT FORMAT: You MUST respond with ONLY valid JSON — no markdown,
+    no code fences, no commentary. Use this exact structure:
+    {{
+      "signals": [
+        {{
+          "institution": "...",
+          "region": "...",
+          "signal_type": "...",
+          "signal_date": "...",
+          "summary": "...",
+          "source_url": "...",
+          "seniority": "...",
+          "domain": "...",
+          "institution_type": "Series A+ fintech | regional/community bank | mid-tier bank | unknown",
+          "score_breakdown": {{
+            "action_type": {{"category": "...", "points": N}},
+            "seniority": {{"category": "...", "points": N}},
+            "domain_fit": {{"category": "...", "points": N}},
+            "institution_accessibility": {{"category": "...", "points": N}},
+            "recency": {{"category": "...", "points": N}}
+          }},
+          "total_score": N,
+          "priority_tier": "HOT|WARM|NURTURE|HOLD"
+        }}
+      ]
+    }}
+  expected_output: >
+    A valid JSON object containing a 'signals' array, where each signal
+    has: institution, region, signal_type, signal_date, summary,
+    source_url, seniority, domain, institution_type, score_breakdown,
+    total_score and priority_tier. Sorted by
+    total_score descending.
+
+briefing_task:
+  description: |
+    Hold a short interactive briefing with the user before running the
+    pipeline. Ask what they want to find, where, time window, and how to
+    rank outcomes.
+
+    Gather and finalize:
+    - objective
+    - regions/countries
+    - time_window_days
+    - domains and signal types
+    - inclusion/exclusion rules
+    - output target (min/max, dedupe policy)
+    - ranking categories (max 5) with weights that sum to 100
+    - priority thresholds HOT/WARM/NURTURE where HOT > WARM > NURTURE
+
+    Final output must be strict JSON only, suitable for saving as a
+    pipeline profile file and consumed by scout/scorer.
+  expected_output: >
+    A valid pipeline profile JSON object that passes schema validation.

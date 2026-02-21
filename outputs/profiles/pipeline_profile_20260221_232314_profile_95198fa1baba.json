@@ -1,0 +1,77 @@
+{
+  "profile_id": "profile_95198fa1baba",
+  "version": 1,
+  "created_at": "2026-02-21T23:22:45.710058",
+  "objective": "Identify 20-25 net-new buying signals for AI transformation and digital modernization.",
+  "regions": [
+    "Europe",
+    "Middle East"
+  ],
+  "countries": [],
+  "time_window_days": 90,
+  "domains": [
+    "ai_transformation",
+    "ai_implementation",
+    "agentic_automation",
+    "industrial_automation"
+  ],
+  "signal_types": [
+    "hire",
+    "partnership",
+    "launch",
+    "pilot",
+    "contract"
+  ],
+  "inclusion_rules": [
+    "Target institutions that are buyers/adopters, not vendors.",
+    "Prioritize strategic initiatives with implementation budget signals."
+  ],
+  "exclusion_rules": [
+    "Exclude Tier-1 global banks, Big Tech, and top global consultancies.",
+    "Exclude primary crypto/NFT/Web3 companies."
+  ],
+  "target_output": {
+    "min_signals": 20,
+    "max_signals": 25,
+    "dedupe_policy": "prefer_new"
+  },
+  "ranking": {
+    "categories": [
+      {
+        "key": "action_strength",
+        "label": "Action Strength",
+        "weight": 30,
+        "description": "How concrete the institutional action is."
+      },
+      {
+        "key": "buyer_fit",
+        "label": "Buyer Fit",
+        "weight": 25,
+        "description": "How likely the institution is to buy consulting/services."
+      },
+      {
+        "key": "domain_fit",
+        "label": "Domain Fit",
+        "weight": 20,
+        "description": "Alignment with chosen use-case domains."
+      },
+      {
+        "key": "seniority",
+        "label": "Seniority",
+        "weight": 15,
+        "description": "Decision-maker level tied to the signal."
+      },
+      {
+        "key": "recency",
+        "label": "Recency",
+        "weight": 10,
+        "description": "How recent the signal is."
+      }
+    ],
+    "priority_thresholds": {
+      "HOT": 80,
+      "WARM": 60,
+      "NURTURE": 40
+    }
+  }
+}
