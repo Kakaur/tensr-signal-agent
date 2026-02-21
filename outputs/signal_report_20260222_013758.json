@@ -1,0 +1,220 @@
+{
+  "timestamp": "2026-02-22T01:37:58.571616",
+  "search_queries_used": [
+    "Europe enterprise AI transformation Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe enterprise AI transformation institutional adoption last 90 days",
+    "Europe AI implementation rollout Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe AI implementation rollout institutional adoption last 90 days",
+    "Europe agentic automation AI agents operations Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe agentic automation AI agents operations institutional adoption last 90 days",
+    "Europe industrial automation Industry 5.0 Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe industrial automation Industry 5.0 institutional adoption last 90 days",
+    "Middle East enterprise AI transformation Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East enterprise AI transformation institutional adoption last 90 days",
+    "Middle East AI implementation rollout Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East AI implementation rollout institutional adoption last 90 days",
+    "Middle East agentic automation AI agents operations Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East agentic automation AI agents operations institutional adoption last 90 days",
+    "Middle East industrial automation Industry 5.0 Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East industrial automation Industry 5.0 institutional adoption last 90 days"
+  ],
+  "total_search_results": 110,
+  "agent_signals_returned": 24,
+  "validated_signals_count": 9,
+  "signals": [
+    {
+      "institution": "Humain",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "contract",
+      "signal_date": "2026-01",
+      "summary": "In January 2026, the state-backed firm Humain secured up to $1.2 billion in financing to specifically expand AI infrastructure and data center capacity",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "sovereign_cloud",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "e&",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "conference",
+      "signal_date": "2026",
+      "summary": "According to IDC research commissioned by AWS and e&, 74 percent of GCC organizations plan to adopt Agentic AI, yet only 19 percent have moved beyond pilots to full-scale deployment.",
+      "source_url": "https://economymiddleeast.com/news/inside-e-panel-davos-2026-the-rise-of-agentic-ai-in-the-gcc/",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "PepsiCo",
+      "region": "Other",
+      "country": "US",
+      "signal_type": "launch",
+      "signal_date": "2026",
+      "summary": "Consumer goods companies like PepsiCo have used AI analytics on social media and consumption data to design new flavors and products that hit the mark in record time.",
+      "source_url": "https://www.eglobalis.com/ai-transformation-2026-26-predictions-redefining-cx-ex-design-and-product-innovation/",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "Inception (G42 company)",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "implementation",
+      "signal_date": "2026",
+      "summary": "Inception, a UAE-based G42 company, is leveraging Kore.ai\u2019s agentic platform to build intelligent assistants that streamline decision-making, governance, and operations across the enterprise.",
+      "source_url": "https://www.kore.ai/blog/what-is-agentic-ai",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "SDAIA",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "partnership",
+      "signal_date": "2026",
+      "summary": "SDAIA signs seven major US technology partnerships to accelerate AI adoption",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": "National AI Strategy alignment"
+    },
+    {
+      "institution": "Middle East workplaces",
+      "region": "Middle East",
+      "country": "Multiple",
+      "signal_type": "adoption",
+      "signal_date": "2026",
+      "summary": "Middle East AI adoption reaches 75%, beating global average: PwC survey. Artificial intelligence is becoming embedded across Middle East workplaces, with 75 percent of employees using AI tools at work over the past year, a higher rate than the 69 percent global average",
+      "source_url": "https://www.arabnews.com/node/2626825/business-economy",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "OpenClaw",
+      "region": "Europe",
+      "country": "EU",
+      "signal_type": "launch",
+      "signal_date": "2026",
+      "summary": "OpenClaw is an open-source, self-hosted AI agent.",
+      "source_url": "https://www.linkedin.com/pulse/ai-agents-just-went-from-concept-adoption-90-days-1eitc",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "fintech",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "SmartDev",
+      "region": "US",
+      "country": "US",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "SmartDev\u2019s AI consulting services combine deep financial services expertise with proven AI development capabilities, helping institutions navigate the complex path from strategy to implementation while maintaining regulatory compliance throughout the transformation process.",
+      "source_url": "https://smartdev.com/ai-transformation-roadmap-finance-compliance/",
+      "seniority": "Unknown",
+      "domain": "ai_implementation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "ACA Group",
+      "region": "US",
+      "country": "US",
+      "signal_type": "survey",
+      "signal_date": "2024",
+      "summary": "ACA Group\u2019s 2024 AI Benchmarking Survey found that only 32% of financial services compliance leaders have an AI committee, and 12% have an AI risk management framework.",
+      "source_url": "https://smartdev.com/ai-transformation-roadmap-finance-compliance/",
+      "seniority": "Unknown",
+      "domain": "ai_compliance_risk",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    }
+  ],
+  "profile": {
+    "profile_id": "profile_95198fa1baba",
+    "version": 1,
+    "created_at": "2026-02-21T23:22:45.710058",
+    "objective": "Identify 20-25 net-new buying signals for AI transformation and digital modernization.",
+    "regions": [
+      "Europe",
+      "Middle East"
+    ],
+    "countries": [],
+    "time_window_days": 90,
+    "domains": [
+      "ai_transformation",
+      "ai_implementation",
+      "agentic_automation",
+      "industrial_automation"
+    ],
+    "signal_types": [
+      "hire",
+      "partnership",
+      "launch",
+      "pilot",
+      "contract"
+    ],
+    "inclusion_rules": [
+      "Target institutions that are buyers/adopters, not vendors.",
+      "Prioritize strategic initiatives with implementation budget signals."
+    ],
+    "exclusion_rules": [
+      "Exclude Tier-1 global banks, Big Tech, and top global consultancies.",
+      "Exclude primary crypto/NFT/Web3 companies."
+    ],
+    "target_output": {
+      "min_signals": 20,
+      "max_signals": 25,
+      "dedupe_policy": "prefer_new"
+    },
+    "ranking": {
+      "categories": [
+        {
+          "key": "action_strength",
+          "label": "Action Strength",
+          "weight": 30,
+          "description": "How concrete the institutional action is."
+        },
+        {
+          "key": "buyer_fit",
+          "label": "Buyer Fit",
+          "weight": 25,
+          "description": "How likely the institution is to buy consulting/services."
+        },
+        {
+          "key": "domain_fit",
+          "label": "Domain Fit",
+          "weight": 20,
+          "description": "Alignment with chosen use-case domains."
+        },
+        {
+          "key": "seniority",
+          "label": "Seniority",
+          "weight": 15,
+          "description": "Decision-maker level tied to the signal."
+        },
+        {
+          "key": "recency",
+          "label": "Recency",
+          "weight": 10,
+          "description": "How recent the signal is."
+        }
+      ],
+      "priority_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  }
+}

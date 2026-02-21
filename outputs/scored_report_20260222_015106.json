@@ -1,0 +1,540 @@
+{
+  "timestamp": "2026-02-22T01:51:06.252248",
+  "source_report": "signal_report_20260222_015056.json",
+  "hot_count": 1,
+  "warm_count": 3,
+  "nurture_count": 1,
+  "hold_count": 1,
+  "total_signals": 6,
+  "signals": [
+    {
+      "institution": "Mastercard",
+      "region": "Global",
+      "signal_type": "launch",
+      "signal_date": "2024-01-25",
+      "summary": "Mastercard launches a new stablecoin program to enhance payment solutions.",
+      "source_url": "example.com/mastercard_stablecoin_launch",
+      "seniority": "VP / Director",
+      "domain": "stablecoin",
+      "institution_type": "Series A+ fintech",
+      "score_breakdown": {
+        "signal_action_type": 30,
+        "seniority": {
+          "category": "vp / director",
+          "points": 15
+        },
+        "domain_fit": {
+          "category": "stablecoin",
+          "points": 25
+        },
+        "institution_accessibility": {
+          "category": "series a+ fintech",
+          "points": 15
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        }
+      },
+      "total_score": 86,
+      "priority_tier": "HOT",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 30.0,
+          "max_points": 30.0,
+          "normalized": 1.0,
+          "weighted_points": 30.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 15.0,
+          "max_points": 15.0,
+          "normalized": 1.0,
+          "weighted_points": 25.0
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 25.0,
+          "max_points": 25.0,
+          "normalized": 1.0,
+          "weighted_points": 20.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 15.0,
+          "max_points": 20.0,
+          "normalized": 0.75,
+          "weighted_points": 11.25
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Accenture",
+      "region": "Global",
+      "signal_type": "partnership",
+      "signal_date": "2023-11-15",
+      "summary": "Accenture announces partnership related to stablecoin tech.",
+      "source_url": "example.com/accenture_partnership",
+      "seniority": "Unknown",
+      "domain": "stablecoin",
+      "institution_type": "Series A+ fintech",
+      "score_breakdown": {
+        "signal_action_type": 15,
+        "seniority": {
+          "category": "inferred (strategic partnership)",
+          "points": 15,
+          "seniority_inferred": true
+        },
+        "domain_fit": {
+          "category": "stablecoin",
+          "points": 25
+        },
+        "institution_accessibility": {
+          "category": "series a+ fintech",
+          "points": 15
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        }
+      },
+      "total_score": 71,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 15.0,
+          "max_points": 15.0,
+          "normalized": 1.0,
+          "weighted_points": 25.0
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 25.0,
+          "max_points": 25.0,
+          "normalized": 1.0,
+          "weighted_points": 20.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 15.0,
+          "max_points": 20.0,
+          "normalized": 0.75,
+          "weighted_points": 11.25
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Deutsche Bank",
+      "region": "EU",
+      "signal_type": "hire",
+      "signal_date": "2023-10-01",
+      "summary": "Deutsche Bank hires MD for Digital Asset division.",
+      "source_url": "example.com/deutsche_bank_hire",
+      "seniority": "C-suite / MD",
+      "domain": "digital_assets",
+      "institution_type": "Mid-tier bank",
+      "score_breakdown": {
+        "signal_action_type": 20,
+        "seniority": {
+          "category": "c-suite / md",
+          "points": 20
+        },
+        "domain_fit": {
+          "category": "digital_assets",
+          "points": 22
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "hire",
+          "points": 20
+        }
+      },
+      "total_score": 66,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 20.0,
+          "max_points": 30.0,
+          "normalized": 0.6667,
+          "weighted_points": 20.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 22.0,
+          "max_points": 25.0,
+          "normalized": 0.88,
+          "weighted_points": 17.6
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 20.0,
+          "max_points": 20.0,
+          "normalized": 1.0,
+          "weighted_points": 15.0
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "First Community Bank",
+      "region": "USA",
+      "signal_type": "hire",
+      "signal_date": "2024-03-01",
+      "summary": "First Community Bank hires a new VP of Digital Transformation to lead their AI initiatives.",
+      "source_url": "example.com/fcb_digital_hire",
+      "seniority": "VP / Director",
+      "domain": "ai_transformation",
+      "institution_type": "Regional / community bank",
+      "score_breakdown": {
+        "signal_action_type": 20,
+        "seniority": {
+          "category": "vp / director",
+          "points": 15
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "regional / community bank",
+          "points": 12
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "hire",
+          "points": 20
+        }
+      },
+      "total_score": 62,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 20.0,
+          "max_points": 30.0,
+          "normalized": 0.6667,
+          "weighted_points": 20.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 12.0,
+          "max_points": 15.0,
+          "normalized": 0.8,
+          "weighted_points": 20.0
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 15.0,
+          "max_points": 20.0,
+          "normalized": 0.75,
+          "weighted_points": 11.25
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Dubai Holding",
+      "region": "ME",
+      "signal_type": "pilot",
+      "signal_date": "2024-01-10",
+      "summary": "Dubai Holding initiates a pilot project for a smart city initiative using AI.",
+      "source_url": "example.com/dubai_smart_city_pilot",
+      "seniority": "Senior / Manager",
+      "domain": "smart_city",
+      "institution_type": "Family-owned conglomerate (ME)",
+      "score_breakdown": {
+        "signal_action_type": 22,
+        "seniority": {
+          "category": "senior / manager",
+          "points": 10
+        },
+        "domain_fit": {
+          "category": "smart_city",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "family-owned conglomerate (me)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "pilot",
+          "points": 22
+        }
+      },
+      "total_score": 42,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 22.0,
+          "max_points": 30.0,
+          "normalized": 0.7333,
+          "weighted_points": 22.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 10.0,
+          "max_points": 20.0,
+          "normalized": 0.5,
+          "weighted_points": 7.5
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Siemens",
+      "region": "EMEA",
+      "signal_type": "partnership",
+      "signal_date": "2024-02-10",
+      "summary": "Siemens partners with a tech firm to integrate AI into their industrial automation processes.",
+      "source_url": "example.com/siemens_ai_partnership",
+      "seniority": "Senior / Manager",
+      "domain": "industrial_automation",
+      "institution_type": "Industrial / regional champion ($500M\u2013$10B)",
+      "score_breakdown": {
+        "signal_action_type": 15,
+        "seniority": {
+          "category": "senior / manager",
+          "points": 10
+        },
+        "domain_fit": {
+          "category": "industrial_automation",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "industrial / regional champion ($500m\u2013$10b)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        }
+      },
+      "total_score": 35,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 10.0,
+          "max_points": 20.0,
+          "normalized": 0.5,
+          "weighted_points": 7.5
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  ]
+}

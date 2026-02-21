@@ -1,0 +1,233 @@
+{
+  "timestamp": "2026-02-22T01:22:22.964693",
+  "search_queries_used": [
+    "Europe enterprise AI transformation Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe enterprise AI transformation institutional adoption last 90 days",
+    "Europe AI implementation rollout Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe AI implementation rollout institutional adoption last 90 days",
+    "Europe agentic automation AI agents operations Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe agentic automation AI agents operations institutional adoption last 90 days",
+    "Europe industrial automation Industry 5.0 Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Europe industrial automation Industry 5.0 institutional adoption last 90 days",
+    "Middle East enterprise AI transformation Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East enterprise AI transformation institutional adoption last 90 days",
+    "Middle East AI implementation rollout Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East AI implementation rollout institutional adoption last 90 days",
+    "Middle East agentic automation AI agents operations Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East agentic automation AI agents operations institutional adoption last 90 days",
+    "Middle East industrial automation Industry 5.0 Identify 20-25 net-new buying signals for AI transformation and digital modernization. 2026",
+    "Middle East industrial automation Industry 5.0 institutional adoption last 90 days"
+  ],
+  "total_search_results": 115,
+  "agent_signals_returned": 20,
+  "validated_signals_count": 10,
+  "signals": [
+    {
+      "institution": "MuleSoft",
+      "region": "US",
+      "country": "US",
+      "signal_type": "other",
+      "signal_date": "2026-02-09",
+      "summary": "MuleSoft reports that 50% of AI agents operate in silos, and 86% of IT leaders say agents add friction without proper integration, highlighting a growing complexity crisis.",
+      "source_url": "https://www.facebook.com/MuleSoft/posts/agent-sprawl-is-real-and-the-data-proves-it-50-of-ai-agents-operate-in-silos-and/1350490320450235/",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "World Liberty Financial",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "launch",
+      "signal_date": "2026-02",
+      "summary": "World Liberty Financial unveils token plan tied to Trump Maldives Resort.",
+      "source_url": "https://fastcompanyme.com/news/ai-is-going-mainstream-in-the-uae-usage-has-jumped-from-10-to-56-in-two-years/",
+      "seniority": "Unknown",
+      "domain": "tokenized_rwa",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "DSIT",
+      "region": "Europe",
+      "country": "UK",
+      "signal_type": "other",
+      "signal_date": "2026-01",
+      "summary": "The government's own DSIT survey of 3,500 businesses, published January 2026, found only 1 in 6 UK businesses (16%) currently use AI\u2014with 80% neither using nor planning to adopt.",
+      "source_url": "https://whitehat-seo.co.uk/blog/the-ai-revolution",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "Humain",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "contract",
+      "signal_date": "2026-01",
+      "summary": "Humain, a Saudi state-backed firm, secured up to $1.2 billion in financing to expand AI infrastructure and data center capacity.",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "sovereign_cloud",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "Electronic Arts (EA)",
+      "region": "US",
+      "country": "US",
+      "signal_type": "partnership",
+      "signal_date": "2026",
+      "summary": "Saudi Arabia is planning an investment partnership with Electronic Arts (EA), signaling a broader strategy of using M&A to embed global capabilities locally and accelerate domestic ecosystem development in areas such as digital media, gaming and advanced technology platforms.",
+      "source_url": "https://www.pwc.com/m1/en/publications/transact-middle-east-2026.html",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": "Non-oil GDP growth"
+    },
+    {
+      "institution": "Competenza",
+      "region": "Middle East",
+      "country": "Multiple",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "Competenza accelerates compliant AI adoption by offering PDPL-proof architectures, in-region delivery, integration expertise, and a structured discovery-to-scale model tailored to GCC realities.",
+      "source_url": "https://competenza.ae/blog/ai-adoption-barriers-middle-east-implementation-roadmap/",
+      "seniority": "Unknown",
+      "domain": "ai_implementation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "PepsiCo",
+      "region": "US",
+      "country": "US",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "PepsiCo uses AI analytics on social media and consumption data to design new flavors and products in record time, shortening the product innovation cycle.",
+      "source_url": "https://www.eglobalis.com/ai-transformation-2026-26-predictions-redefining-cx-ex-design-and-product-innovation/",
+      "seniority": "Unknown",
+      "domain": "ai_implementation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "Alat",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "partnership",
+      "signal_date": "2026",
+      "summary": "Alat, a Saudi Arabian global enterprise, is partnering with world\u2019s leading innovators and universities to reimagine multiple industrial manufacturing processes using AI and advanced technology.",
+      "source_url": "https://sponsored.bloomberg.com/article/alat/industry-5-0-transforming-the-manufacturing-paradigm",
+      "seniority": "C-suite",
+      "domain": "industrial_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "Inception (G42 company)",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "partnership",
+      "signal_date": "2026",
+      "summary": "Inception, a UAE-based G42 company, is leveraging Kore.ai\u2019s agentic platform to build intelligent assistants that streamline decision-making, governance, and operations across the enterprise.",
+      "source_url": "https://www.kore.ai/blog/what-is-agentic-ai",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    },
+    {
+      "institution": "e&",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "IDC research commissioned by AWS and e& found that 74 percent of GCC organizations plan to adopt Agentic AI, yet only 19 percent have moved beyond pilots to full-scale deployment.",
+      "source_url": "https://economymiddleeast.com/news/inside-e-panel-davos-2026-the-rise-of-agentic-ai-in-the-gcc/",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_tier": "mid_tier",
+      "regional_keyword_match": ""
+    }
+  ],
+  "profile": {
+    "profile_id": "profile_95198fa1baba",
+    "version": 1,
+    "created_at": "2026-02-21T23:22:45.710058",
+    "objective": "Identify 20-25 net-new buying signals for AI transformation and digital modernization.",
+    "regions": [
+      "Europe",
+      "Middle East"
+    ],
+    "countries": [],
+    "time_window_days": 90,
+    "domains": [
+      "ai_transformation",
+      "ai_implementation",
+      "agentic_automation",
+      "industrial_automation"
+    ],
+    "signal_types": [
+      "hire",
+      "partnership",
+      "launch",
+      "pilot",
+      "contract"
+    ],
+    "inclusion_rules": [
+      "Target institutions that are buyers/adopters, not vendors.",
+      "Prioritize strategic initiatives with implementation budget signals."
+    ],
+    "exclusion_rules": [
+      "Exclude Tier-1 global banks, Big Tech, and top global consultancies.",
+      "Exclude primary crypto/NFT/Web3 companies."
+    ],
+    "target_output": {
+      "min_signals": 20,
+      "max_signals": 25,
+      "dedupe_policy": "prefer_new"
+    },
+    "ranking": {
+      "categories": [
+        {
+          "key": "action_strength",
+          "label": "Action Strength",
+          "weight": 30,
+          "description": "How concrete the institutional action is."
+        },
+        {
+          "key": "buyer_fit",
+          "label": "Buyer Fit",
+          "weight": 25,
+          "description": "How likely the institution is to buy consulting/services."
+        },
+        {
+          "key": "domain_fit",
+          "label": "Domain Fit",
+          "weight": 20,
+          "description": "Alignment with chosen use-case domains."
+        },
+        {
+          "key": "seniority",
+          "label": "Seniority",
+          "weight": 15,
+          "description": "Decision-maker level tied to the signal."
+        },
+        {
+          "key": "recency",
+          "label": "Recency",
+          "weight": 10,
+          "description": "How recent the signal is."
+        }
+      ],
+      "priority_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  }
+}

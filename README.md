@@ -7,11 +7,9 @@ Signal intelligence pipeline for scouting and scoring AI transformation signals,
 ```
 tensr-signal-agent/
 ├── signal_pipeline_backend/         # Backend Python package (core app logic)
-│   ├── briefing_agent.py
 │   ├── database.py
 │   ├── debug.py
 │   ├── orchestrator.py
-│   ├── pipeline_profile.py
 │   ├── server.py
 │   ├── signal_scorer.py
 │   └── signal_scout.py

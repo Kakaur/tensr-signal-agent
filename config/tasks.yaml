@@ -10,29 +10,40 @@ scout_task:
   # {search_results_json} — JSON string of pre-fetched Tavily results
   description: |
     You have been provided with {n_results} search results from web
-    searches about companies in Eastern Europe and the Middle East
-    undertaking digital transformation, AI adoption, industrial
-    modernisation, and sovereign infrastructure projects.
+    searches about companies in Europe (including the UK and Eastern
+    Europe), the Middle East, and the United States undertaking digital
+    transformation, AI adoption, industrial modernisation, and sovereign
+    infrastructure projects.
 
     SEARCH RESULTS:
     {search_results_json}
 
     YOUR TASK: Analyse ALL results thoroughly and extract EVERY qualifying
-    buying signal. Target 20-25 high-quality signals.
-    Do not stop early — scan every result before concluding.
+    buying signal. Target 20-25 high-quality signals. You MUST return AT
+    LEAST 20 signals — do not stop early even if you think quality is
+    low; include all borderline-qualifying signals to meet the minimum.
+    Scan every result before concluding.
 
-    PRIORITY MARKETS:
-    1. EASTERN EUROPE (EE) — Poland, Romania, Czech Republic, Hungary,
-       Slovakia, Bulgaria, Baltic states.
-       Focus areas: industrial automation, nearshore logistics, EU AI Act
-       compliance, Industrial 5.0, Digital Product Passports (DPP).
-    2. MIDDLE EAST (ME) — Saudi Arabia, UAE, Qatar, Kuwait, Bahrain,
-       Oman, Jordan.
+    PRIORITY MARKETS AND TARGET DISTRIBUTION:
+    1. EUROPE (~35% of signals) — Eastern Europe (Poland, Romania, Czech
+       Republic, Hungary, Slovakia, Bulgaria, Baltic states) AND Western/
+       Northern Europe (UK, Germany, France, Netherlands, Spain, Italy,
+       Nordics, Belgium, Austria, Switzerland, Ireland, Portugal).
+       Focus areas: industrial automation, EU AI Act compliance, Industrial
+       5.0, Digital Product Passports (DPP), nearshore logistics, sovereign
+       cloud.
+    2. MIDDLE EAST (~35% of signals) — Saudi Arabia, UAE, Qatar, Kuwait,
+       Bahrain, Oman, Jordan.
        Focus areas: non-oil GDP diversification, Giga-projects, National
        AI Strategy alignment, In-Country Value (ICV) programmes, Smart
        City orchestration, Sovereign Cloud.
+    3. UNITED STATES (~30% of signals) — mid-market regionals, Series A+
+       fintechs, and industrial champions ($500M–$10B).
+       Focus areas: AI transformation, agentic automation, digital assets /
+       tokenized RWA, AI compliance, enterprise AI rollout.
 
-    At least 70% of signals must be from EE or ME.
+    Target distribution: ~35% Europe, ~35% Middle East, ~30% US.
+    US signals must not exceed 40% of the total.
 
     SIGNAL DOMAINS — look for companies investing in:
     1. AI-driven transformation / enterprise AI adoption
@@ -53,11 +64,18 @@ scout_task:
     - "Non-oil GDP growth"
     - "Smart City orchestration"
     - "Sovereign Cloud"
-    EASTERN EUROPE:
-    - "Labor cost arbitrage offset via AI"
+    EUROPE (Eastern & Western, incl. UK):
     - "EU AI Act compliance"
     - "Industrial 5.0"
     - "Digital Product Passports (DPP)"
+    - "Labor cost arbitrage offset via AI"
+    - "Mittelstand digitalisation" (Germany)
+    - "nearshore logistics modernisation"
+    UNITED STATES:
+    - "agentic automation rollout"
+    - "tokenized RWA"
+    - "AI compliance modernization"
+    - "enterprise AI implementation"
 
     TARGET INSTITUTION PROFILE:
     - Regional champions ($500M–$10B market cap)
@@ -76,15 +94,25 @@ scout_task:
     - "industrial" — manufacturer, logistics, energy, construction, or
                      real estate company adopting digital/AI solutions
 
-    EXCLUSION LIST — Do NOT include any of the following:
-    - Tier-1 global banks (Goldman Sachs, JP Morgan, HSBC, Barclays,
-      BNP Paribas, Deutsche Bank, Citigroup, etc.)
-    - Big Tech / MAGMA (Microsoft, Apple, Google, Meta, Amazon/AWS)
+    EXCLUSION LIST — S&P 500, Fortune 500, FTSE 100, and Tier-A giants:
+    - ANY company that is a constituent of the S&P 500, Fortune 500, or
+      FTSE 100 indices — these large public companies are outside the
+      mid-market ICP regardless of their region. Examples to always skip:
+      PepsiCo, Coca-Cola, Walmart, Target, ExxonMobil, Chevron, Shell,
+      BP, General Electric, Honeywell, Boeing, Airbus, Ford, GM, Pfizer,
+      Johnson & Johnson, Procter & Gamble, Unilever, Nestle, Diageo,
+      HSBC, Barclays, Lloyds, NatWest, Standard Chartered, Santander,
+      BNP Paribas, Deutsche Bank, UniCredit, Nordea, UBS,
+      AstraZeneca, GSK, Tesco, Vodafone, BT, BP, Shell, Rio Tinto.
+    - Big Tech / MAGMA (Microsoft, Apple, Google/Alphabet, Meta,
+      Amazon/AWS)
     - Top-10 global consultancies (McKinsey, BCG, Bain, Deloitte, PwC,
       KPMG, EY, Accenture, etc.)
-    - Large global enterprises/mega-cap vendors outside target ICP
-      (e.g., Adobe, Lenovo, Oracle, SAP, IBM, Cisco, Salesforce,
-      ServiceNow, Nvidia, Intel, AMD, Dell, HP/HPE)
+    - Mega-cap tech/software vendors (Oracle, SAP, IBM, Cisco,
+      Salesforce, ServiceNow, Nvidia, Intel, AMD, Dell, HP/HPE, Adobe,
+      Lenovo)
+    - Global entertainment/media/gaming giants (e.g., Electronic Arts,
+      Activision Blizzard, Ubisoft, Disney, Netflix)
     - Companies whose PRIMARY business is Cryptocurrency, NFTs, or Web3
       (crypto exchanges, DeFi protocols, NFT marketplaces, token
       launchpads, Bitcoin miners — these are NOT the same as companies
@@ -120,6 +148,9 @@ scout_task:
     INSTITUTION FIELD RULE (STRICT):
     - "institution" MUST be one specific company name (exact legal or
       commonly used company name).
+    - "institution" MUST NOT be a ministry, regulator, authority,
+      committee, consortium, initiative, ecosystem, program, strategy,
+      region, country, or unnamed group.
     - Never use generic labels like enterprises, businesses, companies,
       institutions, retailers, manufacturers, customers, clients, sector,
       or industry.
@@ -139,7 +170,7 @@ scout_task:
     - At least 50% of returned signals must have one of these domains:
       ai_transformation, ai_implementation, agentic_automation, ai_compliance_risk.
     - Prioritize institutions actively rolling out enterprise AI or
-      agentic automation in operations, risk, compliance, service, or
+      agentic automation in sales, operations, risk, compliance, service, or
       internal process modernization.
 
     OUTPUT FORMAT: Respond with ONLY valid JSON — no markdown, no code
@@ -147,7 +178,7 @@ scout_task:
     [
       {{
         "institution": "...",
-        "region": "Eastern Europe | Middle East | Europe | US | Other",
+        "region": "Europe | Middle East | US | Other",
         "country": "...",
         "signal_type": "hire | partnership | launch | filing | conference | pilot | contract | other",
         "signal_date": "YYYY-MM or YYYY-MM-DD",
@@ -169,10 +200,13 @@ scout_task:
     Each object must include: institution, region, country, signal_type,
     signal_date, summary, source_url (must be from search results),
     seniority, domain, institution_tier, regional_keyword_match.
-    At least 70% must be from Eastern Europe or Middle East. No Tier-1
-    banks, Big Tech, top consultancies, or primary crypto/NFT/Web3
-    companies. If the search results are genuinely exhausted before
-    reaching 20, return all found signals and add a 'search_note' field.
+    Target distribution: ~35% Europe, ~35% Middle East, ~30% US.
+    US signals must not exceed 40%. Only Tier-A (Tier-1) global giants
+    and mega-cap vendors are excluded — regional, mid-market, and
+    national institutions are all valid targets. No primary
+    crypto/NFT/Web3 companies. If the search results are genuinely
+    exhausted before reaching 20, return all found signals and add a
+    'search_note' field.
 
 scorer_task:
   # {n_signals}     — integer count of signals in this batch
@@ -235,24 +269,3 @@ scorer_task:
     source_url, seniority, domain, institution_type, score_breakdown,
     total_score and priority_tier. Sorted by
     total_score descending.
-
-briefing_task:
-  description: |
-    Hold a short interactive briefing with the user before running the
-    pipeline. Ask what they want to find, where, time window, and how to
-    rank outcomes.
-
-    Gather and finalize:
-    - objective
-    - regions/countries
-    - time_window_days
-    - domains and signal types
-    - inclusion/exclusion rules
-    - output target (min/max, dedupe policy)
-    - ranking categories (max 5) with weights that sum to 100
-    - priority thresholds HOT/WARM/NURTURE where HOT > WARM > NURTURE
-
-    Final output must be strict JSON only, suitable for saving as a
-    pipeline profile file and consumed by scout/scorer.
-  expected_output: >
-    A valid pipeline profile JSON object that passes schema validation.

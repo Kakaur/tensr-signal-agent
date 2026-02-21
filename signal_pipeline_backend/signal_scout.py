@@ -1,4 +1,3 @@
-import argparse
 import json
 import os
 import re
@@ -11,7 +10,7 @@ from dotenv import load_dotenv
 from tavily import TavilyClient
 
 from signal_pipeline_backend import database
-from signal_pipeline_backend.pipeline_profile import load_profile
+from signal_pipeline_backend.index_exclusions import ALL_INDEX_COMPANIES
 
 load_dotenv()
 
@@ -56,6 +55,21 @@ SEARCH_QUERIES = [
     "Czech fintech digital transformation 2025",
     "Eastern Europe regional bank AI pilot 2025",
     "Eastern Europe sovereign cloud initiative 2025",
+    # ── Western & Northern Europe (incl. UK) — AI & Digital Transformation ───
+    "UK mid-market bank AI transformation 2025",
+    "UK regional bank agentic automation digital 2025",
+    "UK fintech Series A AI compliance 2025",
+    "UK industrial company AI digital transformation 2025",
+    "Germany Mittelstand AI transformation digital 2025",
+    "Germany mid-market industrial AI automation 2025",
+    "France mid-market company AI transformation 2025",
+    "Netherlands mid-market fintech AI digital assets 2025",
+    "Spain mid-market bank AI digital transformation 2025",
+    "Italy mid-market industrial AI transformation 2025",
+    "Nordics fintech AI Series A digital transformation 2025",
+    "Sweden Norway Denmark mid-market AI transformation 2025",
+    "Europe mid-market bank EU AI Act compliance 2025",
+    "Europe regional champion Digital Product Passport DPP 2025",
     # ── Middle East — Non-Oil Diversification & Giga-Projects ────────────────
     "Saudi Arabia non-oil GDP AI strategy 2025",
     "Saudi Arabia giga-project digital transformation 2025",
@@ -75,12 +89,23 @@ SEARCH_QUERIES = [
     "Abu Dhabi sovereign cloud digital assets 2025",
     "Middle East Industrial 5.0 smart manufacturing 2025",
     "Middle East Digital Product Passport DPP supply chain 2025",
-    # ── EE + ME — Cross-region signals ───────────────────────────────────────
-    "Eastern Europe Middle East fintech AI Series A 2025",
-    "regional bank Eastern Europe digital transformation hire 2025",
+    # ── Europe + ME — Cross-region signals ───────────────────────────────────
+    "Europe Middle East fintech AI Series A 2025",
+    "regional bank Europe digital transformation hire 2025",
     "family conglomerate Middle East AI consulting 2025",
-    "industrial company Poland Romania digitalization 2025",
+    "industrial company Europe digitalization AI 2025",
     "Gulf Cooperation Council GCC fintech AI pilot 2025",
+    # ── United States — Mid-market AI & Digital Transformation ───────────────
+    "US mid-market bank AI transformation 2025",
+    "US regional bank AI implementation agentic automation 2025",
+    "US Series A fintech AI enterprise 2025",
+    "US industrial company AI automation digital transformation 2025",
+    "US regional manufacturer Industry 5.0 AI adoption 2025",
+    "US community bank digital transformation AI 2025",
+    "US mid-size company agentic automation AI rollout 2025",
+    "US fintech Series B AI compliance risk 2025",
+    "US regional champion digital assets tokenized RWA 2025",
+    "US family business conglomerate AI digital transformation 2025",
 ]
 
 DOMAIN_QUERY_HINTS = {
@@ -96,6 +121,7 @@ DOMAIN_QUERY_HINTS = {
 }
 
 COUNTRY_TO_REGION = {
+    # Middle East
     "saudi arabia": "Middle East",
     "uae": "Middle East",
     "united arab emirates": "Middle East",
@@ -103,25 +129,58 @@ COUNTRY_TO_REGION = {
     "kuwait": "Middle East",
     "oman": "Middle East",
     "bahrain": "Middle East",
-    "poland": "Eastern Europe",
-    "romania": "Eastern Europe",
-    "czech republic": "Eastern Europe",
-    "czechia": "Eastern Europe",
-    "hungary": "Eastern Europe",
-    "slovakia": "Eastern Europe",
-    "bulgaria": "Eastern Europe",
-    "croatia": "Eastern Europe",
-    "serbia": "Eastern Europe",
-    "slovenia": "Eastern Europe",
+    "jordan": "Middle East",
+    "israel": "Middle East",
+    # Europe — Eastern
+    "poland": "Europe",
+    "romania": "Europe",
+    "czech republic": "Europe",
+    "czechia": "Europe",
+    "hungary": "Europe",
+    "slovakia": "Europe",
+    "bulgaria": "Europe",
+    "croatia": "Europe",
+    "serbia": "Europe",
+    "slovenia": "Europe",
+    "estonia": "Europe",
+    "latvia": "Europe",
+    "lithuania": "Europe",
+    "ukraine": "Europe",
+    # Europe — Western & Northern
+    "united kingdom": "Europe",
+    "uk": "Europe",
+    "germany": "Europe",
+    "france": "Europe",
+    "netherlands": "Europe",
+    "spain": "Europe",
+    "italy": "Europe",
+    "sweden": "Europe",
+    "norway": "Europe",
+    "denmark": "Europe",
+    "finland": "Europe",
+    "belgium": "Europe",
+    "austria": "Europe",
+    "switzerland": "Europe",
+    "ireland": "Europe",
+    "portugal": "Europe",
+    "greece": "Europe",
+    # US
+    "united states": "US",
+    "usa": "US",
+    "us": "US",
 }
 
 COUNTRY_KEYWORDS = {
+    # Middle East
     "saudi arabia": ("saudi arabia", "saudi"),
     "uae": ("uae", "united arab emirates", "abu dhabi", "dubai"),
     "qatar": ("qatar", "doha"),
     "kuwait": ("kuwait",),
     "oman": ("oman",),
     "bahrain": ("bahrain",),
+    "jordan": ("jordan", "amman"),
+    "israel": ("israel", "tel aviv"),
+    # Europe — Eastern
     "poland": ("poland", "polish"),
     "romania": ("romania", "romanian"),
     "czech republic": ("czech republic", "czech", "czechia"),
@@ -131,6 +190,29 @@ COUNTRY_KEYWORDS = {
     "croatia": ("croatia", "croatian"),
     "serbia": ("serbia", "serbian"),
     "slovenia": ("slovenia", "slovenian"),
+    "estonia": ("estonia", "estonian"),
+    "latvia": ("latvia", "latvian"),
+    "lithuania": ("lithuania", "lithuanian"),
+    "ukraine": ("ukraine", "ukrainian"),
+    # Europe — Western & Northern
+    "united kingdom": ("united kingdom", "uk", "britain", "british", "england", "scotland", "wales"),
+    "germany": ("germany", "german", "deutschland"),
+    "france": ("france", "french"),
+    "netherlands": ("netherlands", "dutch", "holland"),
+    "spain": ("spain", "spanish"),
+    "italy": ("italy", "italian"),
+    "sweden": ("sweden", "swedish"),
+    "norway": ("norway", "norwegian"),
+    "denmark": ("denmark", "danish"),
+    "finland": ("finland", "finnish"),
+    "belgium": ("belgium", "belgian"),
+    "austria": ("austria", "austrian"),
+    "switzerland": ("switzerland", "swiss"),
+    "ireland": ("ireland", "irish"),
+    "portugal": ("portugal", "portuguese"),
+    "greece": ("greece", "greek"),
+    # US
+    "united states": ("united states", "usa", " us "),
 }
 
 NON_COMPANY_TOKENS = (
@@ -158,6 +240,22 @@ NON_COMPANY_TOKENS = (
     "association",
     "organization",
     "organisation",
+    "commission",
+    "committee",
+    "consortium",
+    "initiative",
+    "program",
+    "programme",
+    "strategy",
+    "framework",
+    "policy",
+    "task force",
+    "taskforce",
+    "working group",
+    "coalition",
+    "alliance",
+    "forum",
+    "summit",
 )
 
 GENERIC_INSTITUTION_NOUNS = {
@@ -246,6 +344,33 @@ COMPANY_HINT_TOKENS = {
     "bank",
 }
 
+NON_COMPANY_ENTITY_PHRASES = {
+    "public private partnership",
+    "national strategy",
+    "digital strategy",
+    "industry initiative",
+    "market initiative",
+    "city initiative",
+    "sovereign initiative",
+    "ecosystem program",
+    "innovation program",
+    "regulatory sandbox",
+    "working group",
+    "task force",
+}
+
+
+def _normalize_text_for_match(value: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", (value or "").lower()).strip()
+
+
+def _contains_phrase(value: str, phrase: str) -> bool:
+    normalized_value = _normalize_text_for_match(value)
+    normalized_phrase = _normalize_text_for_match(phrase)
+    if not normalized_value or not normalized_phrase:
+        return False
+    return f" {normalized_phrase} " in f" {normalized_value} "
+
 
 # ---------------------------------------------------------------------------
 # Config loader
@@ -307,9 +432,7 @@ def build_scout_agent() -> Agent:
 # Task factory — built from config/tasks.yaml
 # ---------------------------------------------------------------------------
 
-def build_scout_task(
-    agent: Agent, search_results: list[dict], profile_context: str = ""
-) -> Task:
+def build_scout_task(agent: Agent, search_results: list[dict]) -> Task:
     """Build the scout task with pre-fetched search results injected."""
     cfg = _load_yaml("tasks.yaml")["scout_task"]
 
@@ -321,12 +444,6 @@ def build_scout_task(
             "search_results_json": search_results_json,
         }
     )
-    if profile_context:
-        description += (
-            "\n\nACTIVE PIPELINE PROFILE (use this as hard guidance):\n"
-            f"{profile_context}\n"
-        )
-
     return Task(
         description=description,
         expected_output=cfg["expected_output"],
@@ -367,6 +484,9 @@ _TIER1_INSTITUTIONS = {
     "goldman sachs", "jp morgan", "jpmorgan", "citigroup", "citi",
     "bank of america", "wells fargo", "hsbc", "barclays", "bnp paribas",
     "deutsche bank", "credit suisse", "ubs", "societe generale",
+    "jpmorgan chase", "industrial and commercial bank of china", "icbc",
+    "bank of china", "agricultural bank of china", "mufg",
+    "sumitomo mitsui", "santander", "standard chartered", "ing",
     "morgan stanley", "blackrock", "fidelity", "vanguard",
     # Big Tech (MAGMA)
     "microsoft", "apple", "google", "alphabet", "meta", "amazon", "aws",
@@ -398,6 +518,25 @@ _LARGE_ENTERPRISE_EXCLUSIONS = {
     "palantir",
     "snowflake",
     "databricks",
+    "huawei",
+    "siemens",
+    "bosch",
+    "tata consultancy services",
+    "tcs",
+    "infosys",
+    "wipro",
+    "capgemini",
+    # Global entertainment/media/gaming giants outside ICP
+    "electronic arts",
+    "ea",
+    "activision blizzard",
+    "take two interactive",
+    "ubisoft",
+    "netflix",
+    "disney",
+    "warner bros",
+    "warner brothers",
+    "comcast",
 }
 
 _CRYPTO_PRIMARY_KEYWORDS = {
@@ -418,6 +557,11 @@ _AI_NATIVE_INSTITUTION_KEYWORDS = {
     "character.ai",
     "xai",
     "deepmind",
+    "runway",
+    "ai21",
+    "together ai",
+    "scale ai",
+    "adept",
 }
 
 _AI_NATIVE_SELF_PATTERNS = (
@@ -483,15 +627,43 @@ def filter_tier1(signals: list[dict]) -> list[dict]:
     kept = []
     for sig in signals:
         institution = sig.get("institution", "")
-        institution_lower = institution.lower()
-        tier = sig.get("institution_tier", "").lower()
+        tier = str(sig.get("institution_tier", "")).strip().lower()
 
-        blocked_name = any(name in institution_lower for name in _TIER1_INSTITUTIONS)
-        blocked_large = any(name in institution_lower for name in _LARGE_ENTERPRISE_EXCLUSIONS)
+        blocked_name = any(
+            _contains_phrase(institution, name) for name in _TIER1_INSTITUTIONS
+        )
+        blocked_large = any(
+            _contains_phrase(institution, name)
+            for name in _LARGE_ENTERPRISE_EXCLUSIONS
+        )
         if tier == "tier1" or blocked_name or blocked_large:
             print(
                 f"  FILTERED {institution} — Tier 1 / global giant exclusion"
             )
+        else:
+            kept.append(sig)
+    return kept
+
+
+def filter_index_companies(signals: list[dict]) -> list[dict]:
+    """Remove companies that appear in S&P 500, Fortune 500, or FTSE 100.
+
+    These are large public companies that are unlikely to engage a boutique
+    consultancy and fall outside the regional mid-market ICP.
+    Uses normalised phrase matching against the ALL_INDEX_COMPANIES set.
+    """
+    kept = []
+    for sig in signals:
+        institution = sig.get("institution", "")
+        institution_lower = institution.lower().strip()
+
+        # Exact or phrase match against known index company names
+        blocked = any(
+            _contains_phrase(institution_lower, name) or institution_lower == name
+            for name in ALL_INDEX_COMPANIES
+        )
+        if blocked:
+            print(f"  FILTERED {institution} — S&P 500 / Fortune 500 / FTSE 100 exclusion")
         else:
             kept.append(sig)
     return kept
@@ -658,23 +830,6 @@ def enforce_output_window(
     return trimmed
 
 
-def resolve_profile_targets(profile_dict: dict | None) -> tuple[int, int, int, str]:
-    """Return (min_count, max_count, recency_days, dedupe_policy)."""
-    if not profile_dict:
-        return 20, 25, 90, "prefer_new"
-
-    target = profile_dict.get("target_output") or {}
-    min_count = int(target.get("min_signals", 20))
-    max_count = int(target.get("max_signals", 25))
-    if max_count < min_count:
-        max_count = min_count
-
-    recency_days = int(profile_dict.get("time_window_days", 90))
-    recency_days = max(1, recency_days)
-    dedupe_policy = str(target.get("dedupe_policy", "prefer_new"))
-    return min_count, max_count, recency_days, dedupe_policy
-
-
 def _detect_country(text: str) -> str:
     lower = (text or "").lower()
     for country, keywords in COUNTRY_KEYWORDS.items():
@@ -687,8 +842,17 @@ def _detect_region(text: str) -> str:
     lower = (text or "").lower()
     if "middle east" in lower or "gcc" in lower or "gulf" in lower:
         return "Middle East"
-    if "eastern europe" in lower:
-        return "Eastern Europe"
+    if (
+        "eastern europe" in lower
+        or "western europe" in lower
+        or "northern europe" in lower
+        or "europe" in lower
+        or "united kingdom" in lower
+        or " uk " in lower
+    ):
+        return "Europe"
+    if "united states" in lower or " usa " in lower:
+        return "US"
     return ""
 
 
@@ -741,6 +905,8 @@ def filter_non_company_institutions(signals: list[dict]) -> list[dict]:
     for sig in signals:
         institution = str(sig.get("institution", "")).strip()
         low = institution.lower()
+        normalized = _normalize_text_for_match(institution)
+        tokens = [tok for tok in normalized.split() if tok]
         if not institution:
             dropped += 1
             continue
@@ -750,9 +916,19 @@ def filter_non_company_institutions(signals: list[dict]) -> list[dict]:
             print(f"  FILTERED {institution} — institution is a geography label")
             continue
 
-        if any(token in low for token in NON_COMPANY_TOKENS):
+        if any(_contains_phrase(institution, token) for token in NON_COMPANY_TOKENS):
             dropped += 1
             print(f"  FILTERED {institution} — non-company institution type")
+            continue
+
+        if any(_contains_phrase(institution, phrase) for phrase in NON_COMPANY_ENTITY_PHRASES):
+            dropped += 1
+            print(f"  FILTERED {institution} — non-company entity phrase")
+            continue
+
+        if not tokens:
+            dropped += 1
+            print(f"  FILTERED {institution or '?'} — invalid institution label")
             continue
 
         kept.append(sig)
@@ -803,47 +979,6 @@ def filter_generic_institution_labels(signals: list[dict]) -> list[dict]:
         f"  COMPANY-NAME FILTER: kept {len(kept)}/{len(signals)} (dropped {dropped})"
     )
     return kept
-
-
-def build_queries_from_profile(profile_dict: dict | None) -> list[str]:
-    if not profile_dict:
-        return SEARCH_QUERIES
-
-    regions = profile_dict.get("regions") or ["Eastern Europe", "Middle East"]
-    countries = profile_dict.get("countries") or []
-    domains = profile_dict.get("domains") or ["ai_transformation"]
-    objective = profile_dict.get("objective", "digital transformation buying signals")
-    time_window_days = int(profile_dict.get("time_window_days", 90))
-    year = datetime.now().year
-
-    geos = countries if countries else regions
-    queries: list[str] = []
-    for geo in geos[:10]:
-        for domain in domains[:8]:
-            hint = DOMAIN_QUERY_HINTS.get(domain, domain.replace("_", " "))
-            queries.append(f"{geo} {hint} {objective} {year}")
-            queries.append(f"{geo} {hint} institutional adoption last {time_window_days} days")
-
-    deduped: list[str] = []
-    seen = set()
-    for q in queries:
-        norm = q.lower().strip()
-        if norm not in seen:
-            seen.add(norm)
-            deduped.append(q)
-
-    return deduped[:50] if deduped else SEARCH_QUERIES
-
-
-def parse_args() -> argparse.Namespace:
-    parser = argparse.ArgumentParser(description="Run signal scout searches and extraction.")
-    parser.add_argument(
-        "--profile",
-        type=str,
-        default=None,
-        help="Optional pipeline profile JSON file.",
-    )
-    return parser.parse_args()
 
 
 def parse_signals_from_agent_text(result_text: str) -> list[dict]:
@@ -920,20 +1055,11 @@ def rebalance_ai_focus(
 # Main
 # ---------------------------------------------------------------------------
 if __name__ == "__main__":
-    args = parse_args()
-    profile = None
-    profile_json_str = ""
-    if args.profile:
-        try:
-            loaded_profile = load_profile(args.profile)
-            profile = loaded_profile.model_dump()
-            profile_json_str = json.dumps(profile, indent=2)
-            print(f"Loaded profile: {args.profile}")
-        except Exception as exc:
-            print(f"WARNING: failed to load profile '{args.profile}': {exc}")
-
-    active_queries = build_queries_from_profile(profile)
-    min_count, max_count, recency_days, dedupe_policy = resolve_profile_targets(profile)
+    active_queries = SEARCH_QUERIES
+    min_count = 20
+    max_count = 25
+    recency_days = 90
+    dedupe_policy = "prefer_new"
 
     # 1. Run all searches programmatically
     print("=" * 60)
@@ -947,7 +1073,7 @@ if __name__ == "__main__":
     print("PHASE 2: Analysing search results with CrewAI agent")
     print("=" * 60)
     agent = build_scout_agent()
-    task = build_scout_task(agent, all_search_results, profile_context=profile_json_str)
+    task = build_scout_task(agent, all_search_results)
     crew = Crew(agents=[agent], tasks=[task], verbose=True)
     result = crew.kickoff()
 
@@ -1015,7 +1141,18 @@ if __name__ == "__main__":
         f"after Tier 1 filter"
     )
 
-    # 5a. Filter primary crypto / NFT / Web3 companies
+    # 5a. Filter S&P 500 / Fortune 500 / FTSE 100 companies
+    print("\n" + "=" * 60)
+    print("PHASE 4a: Filtering S&P 500 / Fortune 500 / FTSE 100 companies")
+    print("=" * 60)
+    pre_index_count = len(validated_signals)
+    validated_signals = filter_index_companies(validated_signals)
+    print(
+        f"  Kept {len(validated_signals)}/{pre_index_count} signals "
+        f"after index companies filter"
+    )
+
+    # 5b. Filter primary crypto / NFT / Web3 companies
     print("\n" + "=" * 60)
     print("PHASE 4b: Filtering primary Crypto/NFT/Web3 companies")
     print("=" * 60)
@@ -1081,9 +1218,58 @@ if __name__ == "__main__":
     validated_signals = filter_generic_institution_labels(validated_signals)
 
     # 11. Enforce target output count window (20-25)
+    # If post-processing has reduced the pool below min_count, run an
+    # additional scout pass over any *previously validated* URLs to
+    # recover borderline-qualifying signals that were initially skipped.
     print("\n" + "=" * 60)
     print("PHASE 11: Enforcing output size window")
     print("=" * 60)
+    if len(validated_signals) < min_count:
+        print(
+            f"  NOTE: Only {len(validated_signals)} signals after filters "
+            f"(need {min_count}). Running recovery pass..."
+        )
+        recovery_task = Task(
+            description=(
+                task.description
+                + "\n\nRECOVERY PASS INSTRUCTION:\n"
+                + f"The pipeline has only {len(validated_signals)} signals after "
+                + "post-processing filters removed some entries.\n"
+                + f"Re-scan ALL search results and return AT LEAST {min_count} "
+                + "signals — include borderline-qualifying signals that you may "
+                + "have skipped in the first pass. Include signals from "
+                + "Europe (incl. UK), Middle East, AND United States.\n"
+                + "Do NOT include Tier-1 or Tier-B institutions.\n"
+                + "Do not stop early."
+            ),
+            expected_output=task.expected_output,
+            agent=agent,
+        )
+        recovery_crew = Crew(agents=[agent], tasks=[recovery_task], verbose=True)
+        recovery_result = recovery_crew.kickoff()
+        recovery_text = str(recovery_result).strip()
+        try:
+            recovery_parsed = parse_signals_from_agent_text(recovery_text)
+        except Exception:
+            recovery_parsed = []
+        if len(recovery_parsed) > len(validated_signals):
+            # Apply the same filters to the recovery batch
+            recovery_parsed = validate_signals(recovery_parsed, all_search_results)
+            recovery_parsed = filter_tier1(recovery_parsed)
+            recovery_parsed = filter_index_companies(recovery_parsed)
+            recovery_parsed = filter_crypto(recovery_parsed)
+            recovery_parsed = filter_ai_native_companies(recovery_parsed)
+            recovery_parsed = filter_old_signals(recovery_parsed, cutoff_days=recency_days)
+            recovery_parsed = enrich_geo_fields(recovery_parsed, all_search_results)
+            recovery_parsed = filter_non_company_institutions(recovery_parsed)
+            recovery_parsed = filter_generic_institution_labels(recovery_parsed)
+            # Merge: prefer recovery set if larger, else keep original
+            if len(recovery_parsed) > len(validated_signals):
+                validated_signals = recovery_parsed
+                print(f"  RECOVERY: using {len(validated_signals)} signals from recovery pass")
+            else:
+                print(f"  RECOVERY: keeping original {len(validated_signals)} signals")
+
     validated_signals = enforce_output_window(
         validated_signals, min_count=min_count, max_count=max_count
     )
@@ -1102,8 +1288,6 @@ if __name__ == "__main__":
         "validated_signals_count": len(validated_signals),
         "signals": validated_signals,
     }
-    if profile:
-        report_data["profile"] = profile
 
     # Include raw output for debugging if parsing failed
     if not parsed_signals:

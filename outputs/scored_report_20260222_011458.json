@@ -1,0 +1,627 @@
+{
+  "timestamp": "2026-02-22T01:14:58.288071",
+  "source_report": "signal_report_20260222_011441.json",
+  "hot_count": 0,
+  "warm_count": 0,
+  "nurture_count": 3,
+  "hold_count": 4,
+  "total_signals": 7,
+  "signals": [
+    {
+      "institution": "PepsiCo",
+      "region": "US",
+      "country": "US",
+      "signal_type": "launch",
+      "signal_date": "Unknown",
+      "summary": "PepsiCo used AI analytics on social media and consumption data to design new flavors and products, shortening the product innovation cycle.",
+      "source_url": "https://www.eglobalis.com/ai-transformation-2026-26-predictions-redefining-cx-ex-design-and-product-innovation/",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 53,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 30.0,
+          "max_points": 30.0,
+          "normalized": 1.0,
+          "weighted_points": 30.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Inception (G42 company)",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "partnership",
+      "signal_date": "Unknown",
+      "summary": "Inception, a UAE-based G42 company, is leveraging Kore.ai\u2019s agentic platform to build intelligent assistants that streamline decision-making, governance, and operations across the enterprise.",
+      "source_url": "https://www.kore.ai/blog/what-is-agentic-ai",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "agentic_automation",
+          "points": 20
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 43,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 20.0,
+          "max_points": 25.0,
+          "normalized": 0.8,
+          "weighted_points": 16.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Alat",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "partnership",
+      "signal_date": "Unknown",
+      "summary": "Alat, a new global enterprise in Saudi Arabia, is partnering with world\u2019s leading innovators and universities to reimagine multiple industrial manufacturing processes using AI.",
+      "source_url": "https://sponsored.bloomberg.com/article/alat/industry-5-0-transforming-the-manufacturing-paradigm",
+      "seniority": "C-suite",
+      "domain": "industrial_automation",
+      "institution_type": "industrial",
+      "score_breakdown": {
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        },
+        "seniority": {
+          "category": "c-suite",
+          "points": 20
+        },
+        "domain_fit": {
+          "category": "industrial_automation",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "industrial",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 42,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 20.0,
+          "max_points": 20.0,
+          "normalized": 1.0,
+          "weighted_points": 15.0
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "e&",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "IDC research commissioned by AWS and e& found that 74 percent of GCC organizations plan to adopt Agentic AI, yet only 19 percent have moved beyond pilots to full-scale deployment.",
+      "source_url": "https://economymiddleeast.com/news/inside-e-panel-davos-2026-the-rise-of-agentic-ai-in-the-gcc/",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "other",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "agentic_automation",
+          "points": 20
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 33,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 20.0,
+          "max_points": 25.0,
+          "normalized": 0.8,
+          "weighted_points": 16.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "ACA Group",
+      "region": "Europe",
+      "country": "Unknown",
+      "signal_type": "survey",
+      "signal_date": "2024",
+      "summary": "ACA Group\u2019s 2024 AI Benchmarking Survey of 200+ financial services compliance leaders found that only 32% have established an AI committee or governance group, and just 12% have adopted an AI risk management framework.",
+      "source_url": "https://smartdev.com/ai-transformation-roadmap-finance-compliance/",
+      "seniority": "Unknown",
+      "domain": "ai_compliance_risk",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "survey",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_compliance_risk",
+          "points": 18
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 31,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 18.0,
+          "max_points": 25.0,
+          "normalized": 0.72,
+          "weighted_points": 14.4
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Humain",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "contract",
+      "signal_date": "2026-01",
+      "summary": "State-backed firm Humain secured up to $1.2 billion in financing to expand AI infrastructure and data center capacity.",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "sovereign_cloud",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "contract",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "sovereign_cloud",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "30-90 days",
+          "points": 7
+        }
+      },
+      "total_score": 28,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 7.0,
+          "max_points": 10.0,
+          "normalized": 0.7,
+          "weighted_points": 7.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Middle East workplaces",
+      "region": "Middle East",
+      "country": "Unknown",
+      "signal_type": "other",
+      "signal_date": "Unknown",
+      "summary": "Middle East AI adoption reaches 75%, beating global average: PwC survey.",
+      "source_url": "https://www.arabnews.com/node/2626825/business-economy",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "mid_tier",
+      "score_breakdown": {
+        "action_type": {
+          "category": "other",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "mid_tier",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 28,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  ]
+}

@@ -7,12 +7,6 @@ import {
   Trash2,
 } from 'lucide-react'
 
-function toTenWords(text) {
-  const cleaned = (text || '').trim().replace(/\s+/g, ' ')
-  if (!cleaned) return 'No description'
-  return cleaned.split(' ').slice(0, 10).join(' ')
-}
-
 function formatDay(dayValue) {
   if (!dayValue) return 'Unknown day'
   const parsed = new Date(dayValue)
@@ -24,67 +18,14 @@ function formatDay(dayValue) {
   })
 }
 
-function normalizePath(path) {
-  return String(path || '').trim().replaceAll('\\', '/')
-}
-
-function pathBasename(path) {
-  const normalized = normalizePath(path)
-  if (!normalized) return ''
-  const parts = normalized.split('/')
-  return parts[parts.length - 1] || ''
-}
-
-function batchMatchesProfile(batch, profilePath) {
-  const batchProfile = normalizePath(batch?.profile_file)
-  const selected = normalizePath(profilePath)
-  if (!batchProfile || !selected) return false
-  if (batchProfile === selected) return true
-  const selectedBase = pathBasename(selected)
-  return selectedBase && pathBasename(batchProfile) === selectedBase
-}
-
-export default function PipelineButton({
-  running,
-  onRun,
-  onOpenBriefing,
-  onOpenSettings,
-  activeProfilePath,
-  selectedProfilePaths,
-  onSelectedProfilePathsChange,
-  runAllProfiles,
-  onRunAllProfilesChange,
-}) {
-  const [savedProfiles, setSavedProfiles] = useState([])
-  const [profilesLoading, setProfilesLoading] = useState(false)
-  const [profilesError, setProfilesError] = useState('')
-  const [profilesNotice, setProfilesNotice] = useState('')
-
+export default function PipelineButton({ running, onRun, onRefresh }) {
   const [batches, setBatches] = useState([])
   const [batchesLoading, setBatchesLoading] = useState(false)
   const [batchesError, setBatchesError] = useState('')
   const [batchesNotice, setBatchesNotice] = useState('')
-
-  const [deletingProfilePath, setDeletingProfilePath] = useState('')
-  const [deletingAllProfiles, setDeletingAllProfiles] = useState(false)
   const [deletingBatchId, setDeletingBatchId] = useState(null)
   const [deletingAllBatches, setDeletingAllBatches] = useState(false)
-  const [pipelinesOpen, setPipelinesOpen] = useState(false)
-
-  const loadSavedProfiles = useCallback(async () => {
-    setProfilesLoading(true)
-    setProfilesError('')
-    try {
-      const res = await fetch('/api/pipeline/profiles')
-      const data = await res.json()
-      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
-      setSavedProfiles(data.profiles || [])
-    } catch (e) {
-      setProfilesError(e.message)
-    } finally {
-      setProfilesLoading(false)
-    }
-  }, [])
+  const [historyOpen, setHistoryOpen] = useState(false)
 
   const loadBatches = useCallback(async () => {
     setBatchesLoading(true)
@@ -102,88 +43,8 @@ export default function PipelineButton({
   }, [])
 
   useEffect(() => {
-    loadSavedProfiles()
     loadBatches()
-  }, [activeProfilePath, loadSavedProfiles, loadBatches])
-
-  useEffect(() => {
-    const validPaths = new Set(savedProfiles.map(item => item.profile_path))
-    const filtered = selectedProfilePaths.filter(path => validPaths.has(path))
-    if (filtered.length !== selectedProfilePaths.length) {
-      onSelectedProfilePathsChange(filtered)
-    }
-  }, [savedProfiles, selectedProfilePaths, onSelectedProfilePathsChange])
-
-  const toggleProfile = profilePath => {
-    if (runAllProfiles) return
-    const hasPath = selectedProfilePaths.includes(profilePath)
-    const next = hasPath
-      ? selectedProfilePaths.filter(path => path !== profilePath)
-      : [...selectedProfilePaths, profilePath]
-    onSelectedProfilePathsChange(next)
-  }
-
-  const deletePipeline = async item => {
-    const displayName = toTenWords(item.short_description || item.objective)
-    const confirmed = window.confirm(
-      `Delete pipeline "${displayName}" and all related batches?`,
-    )
-    if (!confirmed) return
-
-    setDeletingProfilePath(item.profile_path)
-    setProfilesError('')
-    setProfilesNotice('')
-    try {
-      const res = await fetch('/api/pipeline/delete', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ profile_path: item.profile_path }),
-      })
-      const data = await res.json()
-      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
-
-      onSelectedProfilePathsChange(
-        selectedProfilePaths.filter(path => path !== item.profile_path),
-      )
-      await Promise.all([loadSavedProfiles(), loadBatches()])
-      setProfilesNotice(
-        `Deleted 1 pipeline and ${data.runs_deleted || 0} batches.`,
-      )
-      if (runAllProfiles && savedProfiles.length <= 1) onRunAllProfilesChange(false)
-    } catch (e) {
-      setProfilesError(e.message)
-    } finally {
-      setDeletingProfilePath('')
-    }
-  }
-
-  const deleteAllPipelines = async () => {
-    const confirmed = window.confirm('Delete ALL pipelines and all associated batches?')
-    if (!confirmed) return
-
-    setDeletingAllProfiles(true)
-    setProfilesError('')
-    setProfilesNotice('')
-    try {
-      const res = await fetch('/api/pipeline/delete-all', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      })
-      const data = await res.json()
-      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
-
-      onSelectedProfilePathsChange([])
-      onRunAllProfilesChange(false)
-      await Promise.all([loadSavedProfiles(), loadBatches()])
-      setProfilesNotice(
-        `Deleted ${data.profiles_deleted || 0} pipelines and ${data.runs_deleted || 0} batches.`,
-      )
-    } catch (e) {
-      setProfilesError(e.message)
-    } finally {
-      setDeletingAllProfiles(false)
-    }
-  }
+  }, [loadBatches])
 
   const deleteBatch = async batch => {
     const confirmed = window.confirm(`Delete batch #${batch.id}?`)
@@ -201,6 +62,7 @@ export default function PipelineButton({
       const data = await res.json()
       if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
       await loadBatches()
+      await onRefresh?.()
       setBatchesNotice(`Deleted batch #${batch.id}.`)
       void data
     } catch (e) {
@@ -211,25 +73,23 @@ export default function PipelineButton({
   }
 
   const deleteAllBatches = async () => {
-    if (!visibleBatches.length) return
-    const confirmed = window.confirm(`Delete ${visibleBatches.length} visible batch(es)?`)
+    if (!batches.length) return
+    const confirmed = window.confirm(`Delete all ${batches.length} batches?`)
     if (!confirmed) return
 
     setDeletingAllBatches(true)
     setBatchesError('')
     setBatchesNotice('')
     try {
-      for (const batch of visibleBatches) {
-        const res = await fetch('/api/batches/delete', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ run_id: batch.id }),
-        })
-        const data = await res.json()
-        if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
-      }
+      const res = await fetch('/api/batches/delete-all', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      })
+      const data = await res.json()
+      if (!res.ok || data.error) throw new Error(data.error || `HTTP ${res.status}`)
       await loadBatches()
-      setBatchesNotice(`Deleted ${visibleBatches.length} batch(es).`)
+      await onRefresh?.()
+      setBatchesNotice(`Deleted ${data.runs_deleted || 0} batch(es).`)
     } catch (e) {
       setBatchesError(e.message)
     } finally {
@@ -237,217 +97,97 @@ export default function PipelineButton({
     }
   }
 
-  const selectedPipelinePaths = selectedProfilePaths.map(normalizePath).filter(Boolean)
-  const hasSelectedPipelines = selectedPipelinePaths.length > 0
-  const hasActivePipeline = !!normalizePath(activeProfilePath)
-
-  const visibleBatches = runAllProfiles
-    ? batches
-    : hasSelectedPipelines
-      ? batches.filter(batch => selectedPipelinePaths.some(path => batchMatchesProfile(batch, path)))
-      : hasActivePipeline
-        ? batches.filter(batch => batchMatchesProfile(batch, activeProfilePath))
-        : batches
-
   return (
     <div className="flex flex-col items-stretch gap-3">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <button
-          onClick={() => setPipelinesOpen(prev => !prev)}
+          onClick={() => setHistoryOpen(prev => !prev)}
           className="inline-flex items-center gap-2 rounded-lg border border-slate-600 bg-slate-800/80 px-3 py-2 text-sm font-semibold text-slate-100 hover:bg-slate-700/80"
         >
-          {pipelinesOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
-          Previous Pipelines
+          {historyOpen ? <ChevronDown size={14} /> : <ChevronRight size={14} />}
+          Run History
           <span className="rounded-md border border-slate-500/60 px-1.5 py-0.5 text-[10px] text-slate-300">
-            {savedProfiles.length}
+            {batches.length}
           </span>
         </button>
 
-        <div className="flex flex-wrap items-center justify-end gap-2">
-          <button
-            onClick={onRun}
-            disabled={running}
-            className={[
-              'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all',
-              running
-                ? 'bg-slate-700 text-slate-300 cursor-not-allowed'
-                : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white cursor-pointer shadow-lg shadow-blue-900/35',
-            ].join(' ')}
-          >
-            {running
-              ? <><Loader2 size={14} className="animate-spin" /> Running...</>
-              : <><Play size={14} fill="currentColor" /> Run Search</>
-            }
-          </button>
-          <button
-            onClick={onOpenSettings}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all border border-slate-600 text-slate-100 bg-slate-800/80 hover:bg-slate-700/80"
-          >
-            Current Settings
-          </button>
-          <button
-            onClick={onOpenBriefing}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all border border-slate-600 text-slate-100 bg-slate-800/80 hover:bg-slate-700/80"
-          >
-            New Search
-          </button>
-        </div>
+        <button
+          onClick={onRun}
+          disabled={running}
+          className={[
+            'inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold transition-all',
+            running
+              ? 'bg-slate-700 text-slate-300 cursor-not-allowed'
+              : 'bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white cursor-pointer shadow-lg shadow-blue-900/35',
+          ].join(' ')}
+        >
+          {running
+            ? <><Loader2 size={14} className="animate-spin" /> Running...</>
+            : <><Play size={14} fill="currentColor" /> Run Search</>
+          }
+        </button>
       </div>
 
-      {pipelinesOpen && (
-        <div className="rounded-xl border border-slate-700/80 bg-slate-900/55 p-3 space-y-4">
-          <div>
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
-                Previous Pipelines
+      {historyOpen && (
+        <div className="rounded-xl border border-slate-700/80 bg-slate-900/55 p-3 space-y-3">
+          <div className="flex items-center justify-between gap-2">
+            <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
+              Saved Batches
+            </p>
+            <div className="flex items-center gap-2">
+              <p className="text-[10px] text-slate-400">
+                {batchesLoading ? 'Loading...' : `${batches.length} total`}
               </p>
-              <div className="flex items-center gap-2">
-                <p className="text-[10px] text-slate-400">
-                  {profilesLoading ? 'Loading...' : `${savedProfiles.length} saved`}
-                </p>
-                <button
-                  onClick={deleteAllPipelines}
-                  disabled={deletingAllProfiles || profilesLoading || !savedProfiles.length}
-                  className="inline-flex items-center gap-1 rounded-md border border-red-500/50 bg-red-500/15 px-2 py-1 text-[10px] font-semibold text-red-200 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {deletingAllProfiles ? <Loader2 size={11} className="animate-spin" /> : <Trash2 size={11} />}
-                  Delete All
-                </button>
-              </div>
+              <button
+                onClick={deleteAllBatches}
+                disabled={deletingAllBatches || batchesLoading || !batches.length}
+                className="inline-flex items-center gap-1 rounded-md border border-red-500/50 bg-red-500/15 px-2 py-1 text-[10px] font-semibold text-red-200 disabled:cursor-not-allowed disabled:opacity-50"
+              >
+                {deletingAllBatches ? <Loader2 size={11} className="animate-spin" /> : <Trash2 size={11} />}
+                Delete All
+              </button>
             </div>
-
-            <label className="mt-2 flex items-center justify-between rounded-lg border border-slate-700/80 bg-slate-800/70 px-2 py-1.5">
-              <span className="text-xs font-semibold text-slate-100">All pipelines</span>
-              <input
-                type="checkbox"
-                checked={runAllProfiles}
-                onChange={e => onRunAllProfilesChange(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-500 bg-slate-900 accent-cyan-400"
-              />
-            </label>
-
-            <div className="mt-2 max-h-40 space-y-1 overflow-y-auto pr-1">
-              {!profilesLoading && !savedProfiles.length && (
-                <p className="text-xs text-slate-400">No previous pipelines found.</p>
-              )}
-              {savedProfiles.map(item => (
-                <label
-                  key={item.profile_path}
-                  className={[
-                    'flex items-center gap-2 rounded-lg border px-2 py-1.5',
-                    runAllProfiles
-                      ? 'border-slate-800 bg-slate-900/60 opacity-70'
-                      : 'border-slate-700/80 bg-slate-800/60 hover:bg-slate-700/65',
-                  ].join(' ')}
-                >
-                  <input
-                    type="checkbox"
-                    disabled={runAllProfiles}
-                    checked={selectedProfilePaths.includes(item.profile_path)}
-                    onChange={() => toggleProfile(item.profile_path)}
-                    className="h-4 w-4 rounded border-slate-500 bg-slate-900 accent-cyan-400"
-                  />
-                  <div className="min-w-0 flex-1">
-                    <p
-                      className="truncate text-xs text-slate-200"
-                      title={item.objective || item.short_description || ''}
-                    >
-                      {toTenWords(item.short_description || item.objective)}
-                    </p>
-                    <p className="text-[10px] uppercase tracking-wide text-slate-400">
-                      {formatDay(item.created_day || item.created_at)}
-                    </p>
-                  </div>
-                  <button
-                    onClick={e => {
-                      e.preventDefault()
-                      deletePipeline(item)
-                    }}
-                    disabled={deletingProfilePath === item.profile_path || deletingAllProfiles}
-                    className="rounded-md border border-red-500/45 bg-red-500/12 p-1 text-red-200 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
-                    title="Delete pipeline and related batches"
-                  >
-                    {deletingProfilePath === item.profile_path
-                      ? <Loader2 size={11} className="animate-spin" />
-                      : <Trash2 size={11} />
-                    }
-                  </button>
-                </label>
-              ))}
-            </div>
-
-            {profilesError && (
-              <p className="mt-2 text-[11px] text-red-300">{profilesError}</p>
-            )}
-            {profilesNotice && (
-              <p className="mt-2 text-[11px] text-emerald-300">{profilesNotice}</p>
-            )}
           </div>
 
-          <div className="border-t border-slate-800 pt-3">
-            <div className="flex items-center justify-between gap-2">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-300">
-                Batches
-              </p>
-              <div className="flex items-center gap-2">
-                <p className="text-[10px] text-slate-400">
-                  {batchesLoading ? 'Loading...' : `${visibleBatches.length} shown`}
-                </p>
-                <button
-                  onClick={deleteAllBatches}
-                  disabled={deletingAllBatches || batchesLoading || !visibleBatches.length}
-                  className="inline-flex items-center gap-1 rounded-md border border-red-500/50 bg-red-500/15 px-2 py-1 text-[10px] font-semibold text-red-200 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {deletingAllBatches ? <Loader2 size={11} className="animate-spin" /> : <Trash2 size={11} />}
-                  Delete All Batches
-                </button>
-              </div>
-            </div>
-            <div className="mt-2 max-h-44 space-y-1 overflow-y-auto pr-1">
-              {!batchesLoading && !visibleBatches.length && (
-                <p className="text-xs text-slate-400">No batches found.</p>
-              )}
-              {visibleBatches.map(batch => (
-                <div
-                  key={batch.id}
-                  className="flex items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-800/60 px-2 py-1.5"
-                >
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-xs text-slate-200">
-                      #{batch.id} • {batch.output_file || 'Unknown output'}
-                    </p>
-                    <p className="text-[10px] uppercase tracking-wide text-slate-400">
-                      {formatDay(batch.timestamp)} • {batch.signal_count || 0} signals
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => deleteBatch(batch)}
-                    disabled={deletingBatchId === batch.id || deletingAllBatches}
-                    className="rounded-md border border-red-500/45 bg-red-500/12 p-1 text-red-200 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
-                    title="Delete batch"
-                  >
-                    {deletingBatchId === batch.id
-                      ? <Loader2 size={11} className="animate-spin" />
-                      : <Trash2 size={11} />
-                    }
-                  </button>
+          <div className="max-h-48 space-y-1 overflow-y-auto pr-1">
+            {!batchesLoading && !batches.length && (
+              <p className="text-xs text-slate-400">No batches found.</p>
+            )}
+            {batches.map(batch => (
+              <div
+                key={batch.id}
+                className="flex items-center gap-2 rounded-lg border border-slate-700/80 bg-slate-800/60 px-2 py-1.5"
+              >
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-xs text-slate-200">
+                    #{batch.id} • {batch.output_file || 'Unknown output'}
+                  </p>
+                  <p className="text-[10px] uppercase tracking-wide text-slate-400">
+                    {formatDay(batch.timestamp)} • {batch.signal_count || 0} signals
+                  </p>
                 </div>
-              ))}
-            </div>
-            {batchesError && (
-              <p className="mt-2 text-[11px] text-red-300">{batchesError}</p>
-            )}
-            {batchesNotice && (
-              <p className="mt-2 text-[11px] text-emerald-300">{batchesNotice}</p>
-            )}
+                <button
+                  onClick={() => deleteBatch(batch)}
+                  disabled={deletingBatchId === batch.id || deletingAllBatches}
+                  className="rounded-md border border-red-500/45 bg-red-500/12 p-1 text-red-200 hover:bg-red-500/25 disabled:cursor-not-allowed disabled:opacity-60"
+                  title="Delete batch"
+                >
+                  {deletingBatchId === batch.id
+                    ? <Loader2 size={11} className="animate-spin" />
+                    : <Trash2 size={11} />
+                  }
+                </button>
+              </div>
+            ))}
           </div>
-        </div>
-      )}
 
-      {activeProfilePath && (
-        <p className="text-[10px] text-cyan-300/90 max-w-[420px] truncate" title={activeProfilePath}>
-          Active profile: {activeProfilePath}
-        </p>
+          {batchesError && (
+            <p className="text-[11px] text-red-300">{batchesError}</p>
+          )}
+          {batchesNotice && (
+            <p className="text-[11px] text-emerald-300">{batchesNotice}</p>
+          )}
+        </div>
       )}
     </div>
   )

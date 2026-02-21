@@ -1,0 +1,229 @@
+{
+  "timestamp": "2026-02-22T01:57:54.482006",
+  "source_report": "signal_report_20260222_015744.json",
+  "hot_count": 0,
+  "warm_count": 3,
+  "nurture_count": 2,
+  "hold_count": 1,
+  "total_signals": 6,
+  "signals": [
+    {
+      "institution": "Onyx by J.P. Morgan",
+      "region": "global",
+      "signal_type": "launch",
+      "signal_date": "2024-04-01",
+      "summary": "J.P. Morgan's Onyx launches new stablecoin product",
+      "source_url": "example.com",
+      "seniority": "Unknown",
+      "domain": "stablecoin",
+      "institution_type": "Mid-tier bank",
+      "score_breakdown": {
+        "signal_action_type": 30,
+        "seniority": {
+          "category": "inferred (strategic launch)",
+          "points": 12,
+          "seniority_inferred": true
+        },
+        "domain_fit": {
+          "category": "stablecoin",
+          "points": 25
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        }
+      },
+      "total_score": 75,
+      "priority_tier": "WARM"
+    },
+    {
+      "institution": "Example Bank",
+      "region": "USA",
+      "signal_type": "partnership",
+      "signal_date": "2024-03-15",
+      "summary": "Partnership formed around stablecoin tech",
+      "source_url": "example.com",
+      "seniority": "Unknown",
+      "domain": "stablecoin",
+      "institution_type": "Mid-tier bank",
+      "score_breakdown": {
+        "signal_action_type": 15,
+        "seniority": {
+          "category": "inferred (strategic partnership)",
+          "points": 15,
+          "seniority_inferred": true
+        },
+        "domain_fit": {
+          "category": "stablecoin",
+          "points": 25
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        }
+      },
+      "total_score": 63,
+      "priority_tier": "WARM"
+    },
+    {
+      "institution": "Regional Bank Corp",
+      "region": "USA",
+      "signal_type": "hire",
+      "signal_date": "2024-02-01",
+      "summary": "Regional Bank hires new AI compliance manager",
+      "source_url": "example.com",
+      "seniority": "Senior / Manager",
+      "domain": "ai_compliance_risk",
+      "institution_type": "Regional / community bank",
+      "score_breakdown": {
+        "signal_action_type": 20,
+        "seniority": {
+          "category": "senior / manager",
+          "points": 10
+        },
+        "domain_fit": {
+          "category": "ai_compliance_risk",
+          "points": 18
+        },
+        "institution_accessibility": {
+          "category": "regional / community bank",
+          "points": 12
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "hire",
+          "points": 20
+        }
+      },
+      "total_score": 60,
+      "priority_tier": "WARM"
+    },
+    {
+      "institution": "Industrial Automation Co",
+      "region": "Germany",
+      "signal_type": "pilot",
+      "signal_date": "2024-01-15",
+      "summary": "Pilot program for tokenizing industrial assets",
+      "source_url": "example.com",
+      "seniority": "VP / Director",
+      "domain": "tokenized_rwa",
+      "institution_type": "Industrial / regional champion ($500M\u2013$10B)",
+      "score_breakdown": {
+        "signal_action_type": 22,
+        "seniority": {
+          "category": "vp / director",
+          "points": 15
+        },
+        "domain_fit": {
+          "category": "tokenized_rwa",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "industrial / regional champion ($500m\u2013$10b)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "pilot",
+          "points": 22
+        }
+      },
+      "total_score": 47,
+      "priority_tier": "NURTURE"
+    },
+    {
+      "institution": "Fintech Startup X",
+      "region": "USA",
+      "signal_type": "investment",
+      "signal_date": "2023-12-01",
+      "summary": "Investment in AI transformation for Fintech",
+      "source_url": "example.com",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "Series A+ fintech",
+      "score_breakdown": {
+        "signal_action_type": 10,
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "series a+ fintech",
+          "points": 15
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "investment",
+          "points": 10
+        }
+      },
+      "total_score": 44,
+      "priority_tier": "NURTURE"
+    },
+    {
+      "institution": "Sovereign Cloud Inc",
+      "region": "Canada",
+      "signal_type": "conference",
+      "signal_date": "2023-10-01",
+      "summary": "Sovereign cloud solutions featured at conference",
+      "source_url": "example.com",
+      "seniority": "Unknown",
+      "domain": "sovereign_cloud",
+      "institution_type": "Unknown",
+      "score_breakdown": {
+        "signal_action_type": 10,
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "sovereign_cloud",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "unknown",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "conference",
+          "points": 10
+        }
+      },
+      "total_score": 25,
+      "priority_tier": "HOLD"
+    }
+  ]
+}

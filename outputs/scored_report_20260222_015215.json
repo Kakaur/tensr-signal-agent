@@ -1,0 +1,539 @@
+{
+  "timestamp": "2026-02-22T01:52:15.521046",
+  "source_report": "signal_report_20260222_015205.json",
+  "hot_count": 0,
+  "warm_count": 3,
+  "nurture_count": 0,
+  "hold_count": 3,
+  "total_signals": 6,
+  "signals": [
+    {
+      "institution": "BlackRock",
+      "region": "North America",
+      "signal_type": "hire",
+      "signal_date": "2024-02-10",
+      "summary": "BlackRock hired a new VP to lead its AI transformation initiatives.",
+      "source_url": "https://www.example.com/blackrock_ai_hire",
+      "seniority": "VP",
+      "domain": "ai_transformation",
+      "institution_type": "Series A+ fintech",
+      "score_breakdown": {
+        "signal_action_type": 20,
+        "seniority": {
+          "category": "vp",
+          "points": 15
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "series a+ fintech",
+          "points": 15
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "hire",
+          "points": 20
+        }
+      },
+      "total_score": 67,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 20.0,
+          "max_points": 30.0,
+          "normalized": 0.6667,
+          "weighted_points": 20.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 15.0,
+          "max_points": 15.0,
+          "normalized": 1.0,
+          "weighted_points": 25.0
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 15.0,
+          "max_points": 20.0,
+          "normalized": 0.75,
+          "weighted_points": 11.25
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "First National Bank",
+      "region": "North America",
+      "signal_type": "pilot",
+      "signal_date": "2024-01-15",
+      "summary": "First National Bank is piloting a new AI compliance risk platform.",
+      "source_url": "https://www.example.com/fnb_ai_compliance_pilot",
+      "seniority": "Senior / Manager",
+      "domain": "ai_compliance_risk",
+      "institution_type": "Regional / community bank",
+      "score_breakdown": {
+        "signal_action_type": 22,
+        "seniority": {
+          "category": "senior / manager",
+          "points": 10
+        },
+        "domain_fit": {
+          "category": "ai_compliance_risk",
+          "points": 18
+        },
+        "institution_accessibility": {
+          "category": "regional / community bank",
+          "points": 12
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "pilot",
+          "points": 22
+        }
+      },
+      "total_score": 64,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 22.0,
+          "max_points": 30.0,
+          "normalized": 0.7333,
+          "weighted_points": 22.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 12.0,
+          "max_points": 15.0,
+          "normalized": 0.8,
+          "weighted_points": 20.0
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 18.0,
+          "max_points": 25.0,
+          "normalized": 0.72,
+          "weighted_points": 14.4
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 10.0,
+          "max_points": 20.0,
+          "normalized": 0.5,
+          "weighted_points": 7.5
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Citi",
+      "region": "North America",
+      "signal_type": "launch",
+      "signal_date": "2024-01-25",
+      "summary": "Citi launched a new tokenized asset service for institutional clients.",
+      "source_url": "https://www.example.com/citi_tokenized_assets",
+      "seniority": "MD",
+      "domain": "tokenized_rwa",
+      "institution_type": "Mid-tier bank",
+      "score_breakdown": {
+        "signal_action_type": 30,
+        "seniority": {
+          "category": "md",
+          "points": 20
+        },
+        "domain_fit": {
+          "category": "tokenized_rwa",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        }
+      },
+      "total_score": 62,
+      "priority_tier": "WARM",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 30.0,
+          "max_points": 30.0,
+          "normalized": 1.0,
+          "weighted_points": 30.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 20.0,
+          "max_points": 20.0,
+          "normalized": 1.0,
+          "weighted_points": 15.0
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Siemens",
+      "region": "Europe",
+      "signal_type": "partnership",
+      "signal_date": "2024-03-01",
+      "summary": "Siemens partnered with a startup to develop industrial automation solutions.",
+      "source_url": "https://www.example.com/siemens_automation_partnership",
+      "seniority": "Unknown",
+      "domain": "industrial_automation",
+      "institution_type": "Industrial / regional champion ($500M\u2013$10B)",
+      "score_breakdown": {
+        "signal_action_type": 15,
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "industrial_automation",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "industrial / regional champion ($500m\u2013$10b)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        }
+      },
+      "total_score": 31,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Masdar",
+      "region": "Middle East",
+      "signal_type": "investment",
+      "signal_date": "2023-12-01",
+      "summary": "Masdar invested in a smart city infrastructure project.",
+      "source_url": "https://www.example.com/masdar_smart_city_investment",
+      "seniority": "Unknown",
+      "domain": "smart_city",
+      "institution_type": "Family-owned conglomerate (ME)",
+      "score_breakdown": {
+        "signal_action_type": 10,
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "smart_city",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "family-owned conglomerate (me)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "investment",
+          "points": 10
+        }
+      },
+      "total_score": 26,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 10.0,
+          "max_points": 30.0,
+          "normalized": 0.3333,
+          "weighted_points": 10.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Bosch",
+      "region": "Europe",
+      "signal_type": "conference",
+      "signal_date": "2023-10-01",
+      "summary": "Bosch presented on digital product passports at industry conference.",
+      "source_url": "https://www.example.com/bosch_dpp_conference",
+      "seniority": "Unknown",
+      "domain": "digital_product_passport",
+      "institution_type": "Industrial / regional champion ($500M\u2013$10B)",
+      "score_breakdown": {
+        "signal_action_type": 10,
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "digital_product_passport",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "industrial / regional champion ($500m\u2013$10b)",
+          "points": 5
+        },
+        "recency": {
+          "category": ">365 days",
+          "points": 0
+        },
+        "action_type": {
+          "category": "conference",
+          "points": 10
+        }
+      },
+      "total_score": 26,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 10.0,
+          "max_points": 30.0,
+          "normalized": 0.3333,
+          "weighted_points": 10.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  ]
+}

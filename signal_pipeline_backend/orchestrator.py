@@ -77,14 +77,12 @@ def print_scored_summary(scored_path: Path) -> None:
 # ---------------------------------------------------------------------------
 # Pipeline stages
 # ---------------------------------------------------------------------------
-def run_scout(profile_path: Path | None = None) -> Path | None:
+def run_scout() -> Path | None:
     """Run scout module and return the output file path, or None on failure."""
     # Snapshot existing files before scout runs
     existing = set(OUTPUTS_DIR.glob("signal_report_*.json")) if OUTPUTS_DIR.exists() else set()
 
     cmd = [PYTHON, "-m", SCOUT_MODULE]
-    if profile_path:
-        cmd.extend(["--profile", str(profile_path)])
 
     ok = run_subprocess("Signal Scout", cmd)
     if not ok:
@@ -102,13 +100,11 @@ def run_scout(profile_path: Path | None = None) -> Path | None:
     return find_latest_file("signal_report_*.json")
 
 
-def run_scorer(scout_output: Path, profile_path: Path | None = None) -> Path | None:
+def run_scorer(scout_output: Path) -> Path | None:
     """Run scorer module on the given scout output, return scored file path."""
     existing = set(OUTPUTS_DIR.glob("scored_report_*.json")) if OUTPUTS_DIR.exists() else set()
 
     cmd = [PYTHON, "-m", SCORER_MODULE, str(scout_output)]
-    if profile_path:
-        cmd.extend(["--profile", str(profile_path)])
     ok = run_subprocess("Signal Scorer", cmd)
     if not ok:
         return None
@@ -141,12 +137,6 @@ def parse_args() -> argparse.Namespace:
         metavar="FILEPATH",
         help="Skip scouting; run scorer on the provided scout output file.",
     )
-    parser.add_argument(
-        "--profile",
-        type=str,
-        default=None,
-        help="Optional pipeline profile JSON file to guide scout/scorer.",
-    )
     return parser.parse_args()
 
 
@@ -159,15 +149,6 @@ def main() -> None:
 
     scout_output: Path | None = None
     scored_output: Path | None = None
-    profile_path: Path | None = Path(args.profile) if args.profile else None
-    profile_json: str | None = None
-
-    if profile_path:
-        if not profile_path.exists():
-            print(f"ERROR: Profile file not found: {profile_path}")
-            sys.exit(1)
-        with open(profile_path) as f:
-            profile_json = f.read()
 
     # ---- Score-only mode ----
     if args.score_only:
@@ -176,7 +157,7 @@ def main() -> None:
             print(f"ERROR: File not found: {scout_output}")
             sys.exit(1)
         print(f"Score-only mode — using: {scout_output}")
-        scored_output = run_scorer(scout_output, profile_path=profile_path)
+        scored_output = run_scorer(scout_output)
         if scored_output is None:
             sys.exit(1)
         print(f"\nDB: writing scored run → {scored_output.name}")
@@ -184,30 +165,22 @@ def main() -> None:
 
     # ---- Scout-only mode ----
     elif args.scout_only:
-        scout_output = run_scout(profile_path=profile_path)
+        scout_output = run_scout()
         if scout_output is None:
             sys.exit(1)
         print(f"\nDB: writing scout run → {scout_output.name}")
-        database.write_scout_run(
-            scout_output,
-            profile_file=str(profile_path) if profile_path else None,
-            profile_json=profile_json,
-        )
+        database.write_scout_run(scout_output)
 
     # ---- Full pipeline ----
     else:
-        scout_output = run_scout(profile_path=profile_path)
+        scout_output = run_scout()
         if scout_output is None:
             print("\nAborting — scout failed, skipping scorer.")
             sys.exit(1)
         print(f"\nDB: writing scout run → {scout_output.name}")
-        database.write_scout_run(
-            scout_output,
-            profile_file=str(profile_path) if profile_path else None,
-            profile_json=profile_json,
-        )
+        database.write_scout_run(scout_output)
 
-        scored_output = run_scorer(scout_output, profile_path=profile_path)
+        scored_output = run_scorer(scout_output)
         if scored_output is None:
             sys.exit(1)
         print(f"\nDB: writing scored run → {scored_output.name}")

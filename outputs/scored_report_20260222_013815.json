@@ -1,0 +1,803 @@
+{
+  "timestamp": "2026-02-22T01:38:15.712281",
+  "source_report": "signal_report_20260222_013758.json",
+  "hot_count": 0,
+  "warm_count": 0,
+  "nurture_count": 4,
+  "hold_count": 5,
+  "total_signals": 9,
+  "signals": [
+    {
+      "institution": "PepsiCo",
+      "region": "Other",
+      "country": "US",
+      "signal_type": "launch",
+      "signal_date": "2026",
+      "summary": "Consumer goods companies like PepsiCo have used AI analytics on social media and consumption data to design new flavors and products that hit the mark in record time.",
+      "source_url": "https://www.eglobalis.com/ai-transformation-2026-26-predictions-redefining-cx-ex-design-and-product-innovation/",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 58,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 30.0,
+          "max_points": 30.0,
+          "normalized": 1.0,
+          "weighted_points": 30.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "OpenClaw",
+      "region": "Europe",
+      "country": "EU",
+      "signal_type": "launch",
+      "signal_date": "2026",
+      "summary": "OpenClaw is an open-source, self-hosted AI agent.",
+      "source_url": "https://www.linkedin.com/pulse/ai-agents-just-went-from-concept-adoption-90-days-1eitc",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_type": "fintech",
+      "score_breakdown": {
+        "action_type": {
+          "category": "launch",
+          "points": 30
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "agentic_automation",
+          "points": 20
+        },
+        "institution_accessibility": {
+          "category": "fintech",
+          "points": 5
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 58,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 30.0,
+          "max_points": 30.0,
+          "normalized": 1.0,
+          "weighted_points": 30.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 5.0,
+          "max_points": 15.0,
+          "normalized": 0.3333,
+          "weighted_points": 8.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 20.0,
+          "max_points": 25.0,
+          "normalized": 0.8,
+          "weighted_points": 16.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "SDAIA",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "partnership",
+      "signal_date": "2026",
+      "summary": "SDAIA signs seven major US technology partnerships to accelerate AI adoption",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "partnership",
+          "points": 15
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 43,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 15.0,
+          "max_points": 30.0,
+          "normalized": 0.5,
+          "weighted_points": 15.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "e&",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "conference",
+      "signal_date": "2026",
+      "summary": "According to IDC research commissioned by AWS and e&, 74 percent of GCC organizations plan to adopt Agentic AI, yet only 19 percent have moved beyond pilots to full-scale deployment.",
+      "source_url": "https://economymiddleeast.com/news/inside-e-panel-davos-2026-the-rise-of-agentic-ai-in-the-gcc/",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "conference",
+          "points": 10
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "agentic_automation",
+          "points": 20
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 43,
+      "priority_tier": "NURTURE",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 10.0,
+          "max_points": 30.0,
+          "normalized": 0.3333,
+          "weighted_points": 10.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 20.0,
+          "max_points": 25.0,
+          "normalized": 0.8,
+          "weighted_points": 16.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Inception (G42 company)",
+      "region": "Middle East",
+      "country": "UAE",
+      "signal_type": "implementation",
+      "signal_date": "2026",
+      "summary": "Inception, a UAE-based G42 company, is leveraging Kore.ai\u2019s agentic platform to build intelligent assistants that streamline decision-making, governance, and operations across the enterprise.",
+      "source_url": "https://www.kore.ai/blog/what-is-agentic-ai",
+      "seniority": "Unknown",
+      "domain": "agentic_automation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "implementation",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "agentic_automation",
+          "points": 20
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 38,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 20.0,
+          "max_points": 25.0,
+          "normalized": 0.8,
+          "weighted_points": 16.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "ACA Group",
+      "region": "US",
+      "country": "US",
+      "signal_type": "survey",
+      "signal_date": "2024",
+      "summary": "ACA Group\u2019s 2024 AI Benchmarking Survey found that only 32% of financial services compliance leaders have an AI committee, and 12% have an AI risk management framework.",
+      "source_url": "https://smartdev.com/ai-transformation-roadmap-finance-compliance/",
+      "seniority": "Unknown",
+      "domain": "ai_compliance_risk",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "survey",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_compliance_risk",
+          "points": 18
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 36,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 18.0,
+          "max_points": 25.0,
+          "normalized": 0.72,
+          "weighted_points": 14.4
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "SmartDev",
+      "region": "US",
+      "country": "US",
+      "signal_type": "other",
+      "signal_date": "2026",
+      "summary": "SmartDev\u2019s AI consulting services combine deep financial services expertise with proven AI development capabilities, helping institutions navigate the complex path from strategy to implementation while maintaining regulatory compliance throughout the transformation process.",
+      "source_url": "https://smartdev.com/ai-transformation-roadmap-finance-compliance/",
+      "seniority": "Unknown",
+      "domain": "ai_implementation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "other",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_implementation",
+          "points": 16
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 35,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 16.0,
+          "max_points": 25.0,
+          "normalized": 0.64,
+          "weighted_points": 12.8
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Humain",
+      "region": "Middle East",
+      "country": "Saudi Arabia",
+      "signal_type": "contract",
+      "signal_date": "2026-01",
+      "summary": "In January 2026, the state-backed firm Humain secured up to $1.2 billion in financing to specifically expand AI infrastructure and data center capacity",
+      "source_url": "https://www.dcinetwork.org/blog/vision-velocity-strategic-evolution-ai-middle-east",
+      "seniority": "Unknown",
+      "domain": "sovereign_cloud",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "contract",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "sovereign_cloud",
+          "points": 5
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "30-90 days",
+          "points": 7
+        }
+      },
+      "total_score": 33,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 5.0,
+          "max_points": 25.0,
+          "normalized": 0.2,
+          "weighted_points": 4.0
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 7.0,
+          "max_points": 10.0,
+          "normalized": 0.7,
+          "weighted_points": 7.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    },
+    {
+      "institution": "Middle East workplaces",
+      "region": "Middle East",
+      "country": "Multiple",
+      "signal_type": "adoption",
+      "signal_date": "2026",
+      "summary": "Middle East AI adoption reaches 75%, beating global average: PwC survey. Artificial intelligence is becoming embedded across Middle East workplaces, with 75 percent of employees using AI tools at work over the past year, a higher rate than the 69 percent global average",
+      "source_url": "https://www.arabnews.com/node/2626825/business-economy",
+      "seniority": "Unknown",
+      "domain": "ai_transformation",
+      "institution_type": "mid-tier bank",
+      "score_breakdown": {
+        "action_type": {
+          "category": "adoption",
+          "points": 5
+        },
+        "seniority": {
+          "category": "unknown",
+          "points": 5
+        },
+        "domain_fit": {
+          "category": "ai_transformation",
+          "points": 14
+        },
+        "institution_accessibility": {
+          "category": "mid-tier bank",
+          "points": 8
+        },
+        "recency": {
+          "category": "unknown",
+          "points": 0
+        }
+      },
+      "total_score": 33,
+      "priority_tier": "HOLD",
+      "profile_weighted_breakdown": {
+        "action_strength": {
+          "label": "Action Strength",
+          "weight": 30,
+          "source_component": "action_type",
+          "raw_points": 5.0,
+          "max_points": 30.0,
+          "normalized": 0.1667,
+          "weighted_points": 5.0
+        },
+        "buyer_fit": {
+          "label": "Buyer Fit",
+          "weight": 25,
+          "source_component": "institution_accessibility",
+          "raw_points": 8.0,
+          "max_points": 15.0,
+          "normalized": 0.5333,
+          "weighted_points": 13.33
+        },
+        "domain_fit": {
+          "label": "Domain Fit",
+          "weight": 20,
+          "source_component": "domain_fit",
+          "raw_points": 14.0,
+          "max_points": 25.0,
+          "normalized": 0.56,
+          "weighted_points": 11.2
+        },
+        "seniority": {
+          "label": "Seniority",
+          "weight": 15,
+          "source_component": "seniority",
+          "raw_points": 5.0,
+          "max_points": 20.0,
+          "normalized": 0.25,
+          "weighted_points": 3.75
+        },
+        "recency": {
+          "label": "Recency",
+          "weight": 10,
+          "source_component": "recency",
+          "raw_points": 0.0,
+          "max_points": 10.0,
+          "normalized": 0.0,
+          "weighted_points": 0.0
+        }
+      },
+      "profile_thresholds": {
+        "HOT": 80,
+        "WARM": 60,
+        "NURTURE": 40
+      }
+    }
+  ]
+}
